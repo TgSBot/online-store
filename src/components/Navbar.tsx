@@ -105,14 +105,14 @@ const Navbar: FC = () => {
 						>
 							Корзина
 						</Text>
-						<a href=''>
+						<a href='#'>
 							<BasketIMG>
 								<IMG src={Basket} alt='Корзина' />
 								<Circle
 									position='relative'
 									top='8.5px'
 									right='10px'
-									backgroundColor='rgba(241, 79, 79, 1)'
+									groundcolor='#F14F4F'
 									width='16px'
 									height='17px'
 								>

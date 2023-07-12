@@ -19,7 +19,7 @@ const StyledText = styled.span<IText>`
 	font-weight: ${(props) => props.fontWeight || '400'};
 	font-style: ${(props) => props.fontStyle || 'normal '};
 	color: ${(props) => props.color || 'white'};
-	margin: ${({ margin }) => margin || '0'};
+	margin: ${({ margin }) => margin || '0px'};
 `;
 
 const Text: FC<IText> = ({ children, ...props }) => {
