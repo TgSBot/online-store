@@ -5,7 +5,7 @@ import Team from '../modules/Team';
 const HomePage = () => {
 	return (
 		<>
-			<Header />
+			{/* <Header /> */}
 			<Team />
 		</>
 	);

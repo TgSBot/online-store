@@ -11,6 +11,7 @@ interface ICircle extends PropsWithChildren {
 	right?: string;
 	bottom?: string;
 	left?: string;
+	outline?: string;
 }
 
 const CircleStyled = styled.div<ICircle>`
@@ -22,6 +23,9 @@ const CircleStyled = styled.div<ICircle>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-shrink: 0;
+	overflow: hidden;
+	outline: ${(props) => props.outline};
 	position: ${(props) => props.position || 'static'};
 	right: ${(props) => props.right || '0px'};
 	top: ${(props) => props.top || '0px'};
