@@ -3,12 +3,7 @@ import { styled } from 'styled-components';
 import Navbar from '../components/Navbar';
 import Text from '../UI/Text/Text';
 import Button from '../UI/Button/Button';
-
-type BlockText = {
-	width: string;
-	height: string;
-	margin: string;
-};
+import BlockText from '../UI/BlockText/BlockText';
 
 const Wrapper = styled.div`
 	width: 100%;
@@ -36,12 +31,6 @@ const TransparentInscription = styled.div`
 	height: 200px;
 `;
 
-const BlockTextBody = styled.div<BlockText>`
-	width: ${(props) => props.width};
-	height: ${(props) => props.height};
-	margin: ${(props) => props.margin || 0};
-`;
-
 const HomePage: FC = () => {
 	return (
 		<Wrapper>
@@ -57,17 +46,17 @@ const HomePage: FC = () => {
 			</TransparentInscription>
 			<Row>
 				<Navbar />
-				<BlockTextBody width='580px' height='100px' margin='100px 0px 20px 0px'>
+				<BlockText width='580px' height='100px' margin='100px 0px 20px 0px'>
 					<Text fontFamily='Intro-Regular' fontSize='36px' line_height='50.4px'>
 						Кроссовки известных брендов с доставкой по России и СНГ
 					</Text>
-				</BlockTextBody>
-				<BlockTextBody width='480px' height='44px' margin='0px 0px 40px 0px'>
+				</BlockText>
+				<BlockText width='480px' height='44px' margin='0px 0px 40px 0px'>
 					<Text fontFamily='Intro-Book' fontSize='16px' line_height='22.4px'>
 						Мы продаем кроссовки брендов Nike, Adidas, Puma, Reebok, Converse и
 						многие другие по низким ценам
 					</Text>
-				</BlockTextBody>
+				</BlockText>
 				<Button
 					ground_color='#F14F4F'
 					width='250px'
