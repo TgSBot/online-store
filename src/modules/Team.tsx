@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { styled } from 'styled-components';
 import Text from '../UI/Text/Text';
 import { teamMember } from '../assets/list/Team';
+import Img from '../UI/IMG/Img';
 
 const Wrapper = styled.div`
 	width: 100%;
@@ -26,12 +27,6 @@ const Post = styled.div`
 	margin: 40px 20px 40px 0px;
 `;
 
-const IMG = styled.img`
-	display: block;
-	width: 380px;
-	height: 400px;
-`;
-
 const Team: FC = () => {
 	return (
 		<Wrapper>
@@ -43,7 +38,12 @@ const Team: FC = () => {
 					{teamMember.map((post, index) =>
 						index < 3 ? (
 							<Post key={post.id}>
-								<IMG src={post.img} alt='Фото Человека' />
+								<Img
+									src={post.img}
+									alt='Фото Человека'
+									width='380px'
+									height='400px'
+								/>
 								<Text
 									fontFamily='Intro-Bold'
 									fontSize='24px'
@@ -64,7 +64,12 @@ const Team: FC = () => {
 					{teamMember.map((post, index) =>
 						index >= 3 ? (
 							<Post key={post.id}>
-								<IMG src={post.img} alt='Фото Человека' />
+								<Img
+									src={post.img}
+									alt='Фото Человека'
+									width='380px'
+									height='400px'
+								/>
 								<Text
 									fontFamily='Intro-Bold'
 									fontSize='24px'
