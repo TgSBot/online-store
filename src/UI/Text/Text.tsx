@@ -5,7 +5,7 @@ import Fonts from '../../global/styles/Fonts';
 interface IText extends PropsWithChildren {
 	fontFamily: string;
 	fontSize: string;
-	lineHeight?: string;
+	line_height?: string;
 	fontWeight?: string;
 	fontStyle?: string;
 	color?: string;
@@ -15,7 +15,7 @@ interface IText extends PropsWithChildren {
 const StyledText = styled.span<IText>`
 	font-family: ${(props) => props.fontFamily || 'sans-serif'};
 	font-size: ${(props) => props.fontSize};
-	line-height: ${(props) => props.lineHeight || 'normal'};
+	line-height: ${(props) => props.line_height || 'normal'};
 	font-weight: ${(props) => props.fontWeight || '400'};
 	font-style: ${(props) => props.fontStyle || 'normal '};
 	color: ${(props) => props.color || 'white'};

@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 interface ICircle extends PropsWithChildren {
 	width: string;
 	height: string;
-	groundcolor: string;
+	ground_color: string;
 	border?: string;
 	position?: string;
 	top?: string;
@@ -18,7 +18,7 @@ const CircleStyled = styled.div<ICircle>`
 	height: ${(props) => props.height}:
 	border: ${(props) => props.border || 'none'};
 	border-radius: 50%;
-	background-color: ${(props) => props.groundcolor}; 
+	background-color: ${(props) => props.ground_color}; 
 	display: flex;
 	justify-content: center;
 	align-items: center;

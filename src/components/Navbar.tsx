@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import Text from '../UI/Text/Text';
 import Basket from '../assets/svg/Vector_basket.svg';
-import Navigation from './Navigation';
 import Circle from '../UI/Circle/Circle';
 
 const Wrapper = styled.header`
@@ -22,11 +21,19 @@ const Row = styled.div`
 	align-items: center;
 `;
 
+const NavigationStyle = styled.nav`
+	width: fit-content;
+	height: fit-content;
+	display: flex;
+	flex-direction: row;
+	align-items: end;
+`;
+
 const BasketRow = styled.div`
 	width: fit-content;
 	height: fit-content;
 	display: flex;
-	flex-diraction: row;
+	flex-direction: row;
 	align-items: end;
 `;
 
@@ -39,7 +46,7 @@ const BasketIMG = styled.div`
 	width: fit-content;
 	height: fit-content;
 	display: flex;
-	flex-diraction: row;
+	flex-direction: row;
 `;
 
 const Navbar: FC = () => {
@@ -54,7 +61,7 @@ const Navbar: FC = () => {
 				>
 					SneakMax
 				</Text>
-				<Navigation>
+				<NavigationStyle>
 					<Text
 						fontSize='14px'
 						fontFamily='Intro-Book'
@@ -111,8 +118,8 @@ const Navbar: FC = () => {
 								<Circle
 									position='relative'
 									top='8.5px'
-									right='10px'
-									groundcolor='#F14F4F'
+									left='-10px'
+									ground_color='#F14F4F'
 									width='16px'
 									height='17px'
 								>
@@ -123,7 +130,7 @@ const Navbar: FC = () => {
 							</BasketIMG>
 						</a>
 					</BasketRow>
-				</Navigation>
+				</NavigationStyle>
 			</Row>
 		</Wrapper>
 	);
