@@ -49,7 +49,7 @@ const AbsoluteBlock = styled.div<AbsoluteBlockStyle>`
 const Team: FC = () => {
 	return (
 		<Wrapper>
-			<AbsoluteBlock right='-350px' top='-150px' height='686px' width='686px'>
+			{/* <AbsoluteBlock right='-350px' top='-150px' height='686px' width='686px'>
 				<Circle
 					width='686px'
 					height='686px'
@@ -74,7 +74,7 @@ const Team: FC = () => {
 					position='absolute'
 					outline='1px solid rgba(255, 255, 255, 0.50)'
 				/>
-			</AbsoluteBlock>
+			</AbsoluteBlock> */}
 			<Row>
 				<Text fontFamily='Intro-Bold' fontSize='30px' fontWeight='700'>
 					Наша команда

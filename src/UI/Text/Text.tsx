@@ -10,6 +10,7 @@ interface IText extends PropsWithChildren {
 	fontStyle?: string;
 	color?: string;
 	margin?: string;
+	text_align?: string;
 }
 
 const StyledText = styled.span<IText>`
@@ -20,6 +21,7 @@ const StyledText = styled.span<IText>`
 	font-style: ${(props) => props.fontStyle || 'normal '};
 	color: ${(props) => props.color || 'white'};
 	margin: ${({ margin }) => margin || '0px'};
+	text-align: ${(props) => props.text_align || 'none'};
 `;
 
 const Text: FC<IText> = ({ children, ...props }) => {
