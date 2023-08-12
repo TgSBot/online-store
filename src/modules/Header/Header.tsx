@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { styled } from 'styled-components';
-import Navbar from '../components/Navbar';
-import Text from '../UI/Text/Text';
-import Button from '../UI/Button/Button';
-import BlockText from '../UI/BlockText/BlockText';
+import Navbar from './components/Navbar';
+import Text from '../../UI/Text/Text';
+import Button from '../../UI/Button/Button';
+import BlockText from '../../UI/BlockText/BlockText';
 
 const Wrapper = styled.div`
 	width: 100%;

@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import Text from '../UI/Text/Text';
 import { teamMember } from '../assets/list/Team';
 import Img from '../UI/IMG/Img';
-import Circle from '../UI/Circle/Circle';
+// import Circle from '../UI/Circle/Circle';
 
 type AbsoluteBlockStyle = {
 	width: string;
@@ -36,20 +36,20 @@ const Post = styled.div`
 	margin: 40px 20px 40px 0px;
 `;
 
-const AbsoluteBlock = styled.div<AbsoluteBlockStyle>`
-	display: block;
-	position: absolute;
-	overflow: hidden;
-	right: ${(props) => props.right};
-	top: ${(props) => props.top};
-	height: ${(props) => props.height};
-	width: ${(props) => props.width};
-`;
+// const AbsoluteBlock = styled.div<AbsoluteBlockStyle>`
+// 	display: block;
+// 	position: absolute;
+// 	overflow: hidden;
+// 	right: ${(props) => props.right};
+// 	top: ${(props) => props.top};
+// 	height: ${(props) => props.height};
+// 	width: ${(props) => props.width};
+// `;
 
 const Team: FC = () => {
 	return (
 		<Wrapper>
-			<AbsoluteBlock right='-350px' top='-150px' height='686px' width='686px'>
+			{/* <AbsoluteBlock right='-350px' top='-150px' height='686px' width='686px'>
 				<Circle
 					width='686px'
 					height='686px'
@@ -74,7 +74,7 @@ const Team: FC = () => {
 					position='absolute'
 					outline='1px solid rgba(255, 255, 255, 0.50)'
 				/>
-			</AbsoluteBlock>
+			</AbsoluteBlock> */}
 			<Row>
 				<Text fontFamily='Intro-Bold' fontSize='30px' fontWeight='700'>
 					Наша команда

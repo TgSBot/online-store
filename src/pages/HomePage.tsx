@@ -1,12 +1,11 @@
 import React from 'react';
-import Header from '../modules/Header';
-import Team from '../modules/Team';
+import ConnectUs from '../modules/ConnectUs/ConnectUs';
+import Footer from '../modules/Footer';
 
 const HomePage = () => {
 	return (
 		<>
-			{/* <Header /> */}
-			<Team />
+			<Footer />
 		</>
 	);
 };

@@ -9,6 +9,7 @@ interface IImg extends PropsWithChildren, imgStyle {
 type imgStyle = {
 	width: string;
 	height: string;
+	margin?: string;
 	position?: string;
 	top?: string;
 	right?: string;
@@ -24,6 +25,7 @@ const IMG = styled.img<imgStyle>`
 	top: ${(props) => props.top || '0px'};
 	bottom: ${(props) => props.bottom || '0px'};
 	left: ${(props) => props.left || '0px'};
+	margin: ${(props) => props.margin || '0px'};
 `;
 
 const Img: FC<IImg> = ({ src, alt, ...props }) => {

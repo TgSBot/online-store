@@ -9,6 +9,8 @@ type ButtonStyle = {
 	height: string;
 	border_radius?: string;
 	margin?: string;
+	type?: string;
+	disabled?: any;
 };
 
 const ButtonStyled = styled.button<ButtonStyle>`
@@ -22,8 +24,12 @@ const ButtonStyled = styled.button<ButtonStyle>`
 	margin: ${(props) => props.margin || 0};
 `;
 
-const Button: FC<IButton> = ({ children, ...props }) => {
-	return <ButtonStyled {...props}>{children}</ButtonStyled>;
+const Button: FC<IButton> = ({ children, type, ...props }) => {
+	return (
+		<ButtonStyled type={type} {...props}>
+			{children}
+		</ButtonStyled>
+	);
 };
 
 export default Button;

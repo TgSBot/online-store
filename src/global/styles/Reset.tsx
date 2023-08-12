@@ -90,4 +90,12 @@ label {
 legend {
 	display: block;
 }
+
+input[type="text"], input[type="tel"] {
+	font-family: Intro-Book;
+	line-height: 22.4px;
+	font-size: 16px;
+	color: black;
+}
+
 `;
