@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import Text from '../UI/Text/Text';
 import { teamMember } from '../assets/list/Team';
 import Img from '../UI/IMG/Img';
-import Circle from '../UI/Circle/Circle';
+// import Circle from '../UI/Circle/Circle';
 
 type AbsoluteBlockStyle = {
 	width: string;
@@ -36,15 +36,15 @@ const Post = styled.div`
 	margin: 40px 20px 40px 0px;
 `;
 
-const AbsoluteBlock = styled.div<AbsoluteBlockStyle>`
-	display: block;
-	position: absolute;
-	overflow: hidden;
-	right: ${(props) => props.right};
-	top: ${(props) => props.top};
-	height: ${(props) => props.height};
-	width: ${(props) => props.width};
-`;
+// const AbsoluteBlock = styled.div<AbsoluteBlockStyle>`
+// 	display: block;
+// 	position: absolute;
+// 	overflow: hidden;
+// 	right: ${(props) => props.right};
+// 	top: ${(props) => props.top};
+// 	height: ${(props) => props.height};
+// 	width: ${(props) => props.width};
+// `;
 
 const Team: FC = () => {
 	return (
