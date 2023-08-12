@@ -1,17 +1,14 @@
 import React, { FC } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { styled } from 'styled-components';
-import Button from '../UI/Button/Button';
-import Input from '../UI/Input/Input';
-import Text from '../UI/Text/Text';
+import Text from '../../../UI/Text/Text';
+import Input from '../../../UI/Input/Input';
+import Button from '../../../UI/Button/Button';
+import BlockText from '../../../UI/BlockText/BlockText';
 
 type FormValue = {
 	firstName: string;
 	phoneNumber: string;
-};
-
-type BlockStyle = {
-	margin: string;
 };
 
 const Wrapper = styled.div`
@@ -43,10 +40,6 @@ const FormStyled = styled.form`
 	justify-content: center;
 	flex-direction: column;
 	height: fit-content;
-`;
-
-const BlockStyled = styled.div<BlockStyle>`
-	margin: ${(props) => props.margin};
 `;
 
 const Form: FC = () => {
@@ -107,7 +100,11 @@ const Form: FC = () => {
 							/>
 						)}
 					/>
-					<BlockStyled margin='9.94px 0px 10.05px 0px'>
+					<BlockText
+						margin='9.94px 0px 10.05px 0px'
+						width='fit-content'
+						height='fit-content'
+					>
 						<Controller
 							name='phoneNumber'
 							control={control}
@@ -134,7 +131,7 @@ const Form: FC = () => {
 								/>
 							)}
 						/>
-					</BlockStyled>
+					</BlockText>
 					<Button
 						width='338px'
 						height='60px'

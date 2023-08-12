@@ -1,14 +1,9 @@
 import React from 'react';
-import Form from '../components/Form';
-import ConnectUs from '../modules/ConnectUs';
-import Header from '../modules/Header';
-import Team from '../modules/Team';
+import ConnectUs from '../modules/ConnectUs/ConnectUs';
 
 const HomePage = () => {
 	return (
 		<>
-			{/* <Header /> */}
-			{/* <Team /> */}
 			<ConnectUs />
 		</>
 	);

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import Text from '../UI/Text/Text';
+import Text from '../../../UI/Text/Text';
 import Basket from '../assets/svg/Vector_basket.svg';
-import Circle from '../UI/Circle/Circle';
+import Circle from '../../../UI/Circle/Circle';
 
 const Wrapper = styled.header`
 	width: fit-content;
