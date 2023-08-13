@@ -3,21 +3,14 @@ import { styled } from 'styled-components';
 import Text from '../UI/Text/Text';
 import { teamMember } from '../assets/list/Team';
 import Img from '../UI/IMG/Img';
-// import Circle from '../UI/Circle/Circle';
-
-type AbsoluteBlockStyle = {
-	width: string;
-	height: string;
-	top: string;
-	right: string;
-};
+import Circle from '../UI/Circle/Circle';
 
 const Wrapper = styled.div`
-	width: 100%;
-	height: 100%;
+	position: relative;
 	display: flex;
 	justify-content: center;
 	background-color: #484283;
+	z-index: 0;
 `;
 
 const Row = styled.div`
@@ -36,45 +29,37 @@ const Post = styled.div`
 	margin: 40px 20px 40px 0px;
 `;
 
-// const AbsoluteBlock = styled.div<AbsoluteBlockStyle>`
-// 	display: block;
-// 	position: absolute;
-// 	overflow: hidden;
-// 	right: ${(props) => props.right};
-// 	top: ${(props) => props.top};
-// 	height: ${(props) => props.height};
-// 	width: ${(props) => props.width};
-// `;
-
 const Team: FC = () => {
 	return (
 		<Wrapper>
-			{/* <AbsoluteBlock right='-350px' top='-150px' height='686px' width='686px'>
-				<Circle
-					width='686px'
-					height='686px'
-					ground_color='#F14F4F'
-					position='absolute'
-				/>
-			</AbsoluteBlock>
-			<AbsoluteBlock right='-400px' top='-350px' height='644px' width='644px'>
-				<Circle
-					width='644px'
-					height='644px'
-					ground_color=''
-					position='absolute'
-					outline='1px solid rgba(255, 255, 255, 0.50)'
-				/>
-			</AbsoluteBlock>
-			<AbsoluteBlock right='-240px' top='210px' height='297px' width='297px'>
-				<Circle
-					width='297px'
-					height='297px'
-					ground_color=''
-					position='absolute'
-					outline='1px solid rgba(255, 255, 255, 0.50)'
-				/>
-			</AbsoluteBlock> */}
+			<Circle
+				width='686px'
+				height='686px'
+				ground_color='#F14F4F'
+				position='absolute'
+				left='1370px'
+				top='-149px'
+			/>
+			<Circle
+				width='644px'
+				height='644px'
+				position='absolute'
+				ground_color=''
+				left='1470px'
+				top='-330px'
+				border='1px solid rgba(255, 255, 255, 0.50)'
+				z_index='0'
+			/>
+			<Circle
+				width='297px'
+				height='297px'
+				ground_color=''
+				border='1px solid rgba(255, 255, 255, 0.50)'
+				position='absolute'
+				left='1760px'
+				top='260px'
+				z_index='0'
+			/>
 			<Row>
 				<Text fontFamily='Intro-Bold' fontSize='30px' fontWeight='700'>
 					Наша команда

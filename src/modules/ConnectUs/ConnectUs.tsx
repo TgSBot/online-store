@@ -16,11 +16,13 @@ type PropsPhoto = {
 
 const Wrapper = styled.div`
 	width: 100%;
-	height: 100%;
+	height: 555px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 60px 0px 82px 0px;
+	position: relative;
+	z-index: 1;
+	background-color: white;
 `;
 
 const Row = styled.div`
