@@ -15,6 +15,7 @@ type imgStyle = {
 	right?: string;
 	bottom?: string;
 	left?: string;
+	clip_path?: string;
 };
 
 const IMG = styled.img<imgStyle>`
@@ -26,6 +27,7 @@ const IMG = styled.img<imgStyle>`
 	bottom: ${(props) => props.bottom || '0px'};
 	left: ${(props) => props.left || '0px'};
 	margin: ${(props) => props.margin || '0px'};
+	clip-path: ${(props) => props.clip_path || 'none'};
 `;
 
 const Img: FC<IImg> = ({ src, alt, ...props }) => {
