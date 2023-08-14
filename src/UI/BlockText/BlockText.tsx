@@ -16,6 +16,12 @@ type BlockTextStyle = {
 	right?: string;
 	bottom?: string;
 	left?: string;
+	display?: string;
+	transform?: string;
+	onClick?: any;
+	background_color?: string;
+	transition?: string;
+	opacity?: string;
 };
 
 const BlockTextStyled = styled.div<BlockTextStyle>`
@@ -23,7 +29,7 @@ const BlockTextStyled = styled.div<BlockTextStyle>`
 	height: ${(props) => props.height};
 	margin: ${(props) => props.margin || 0};
 	justify-content: ${(props) => props.justify_content || 'normal'};
-	display: flex;
+	display: ${(props) => props.display || 'flex'};
 	align-items: ${(props) => props.align_items || 'stretch'};
 	flex-direction: ${(props) => props.flex_direction || 'row'};
 	vertical-align: ${(props) => props.vertical_align};
@@ -32,10 +38,18 @@ const BlockTextStyled = styled.div<BlockTextStyle>`
 	top: ${(props) => props.top || '0px'};
 	bottom: ${(props) => props.bottom || '0px'};
 	left: ${(props) => props.left || '0px'};
+	transform: ${(props) => props.transform};
+	background-color: ${(props) => props.background_color};
+	transition: ${(props) => props.transition || 'none'};
+	opacity: ${(props) => props.opacity || '1'};
 `;
 
-const BlockText: FC<IBlockText> = ({ children, ...props }) => {
-	return <BlockTextStyled {...props}>{children}</BlockTextStyled>;
+const BlockText: FC<IBlockText> = ({ children, onClick, ...props }) => {
+	return (
+		<BlockTextStyled onClick={onClick} {...props}>
+			{children}
+		</BlockTextStyled>
+	);
 };
 
 export default BlockText;

@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 interface IImg extends PropsWithChildren, imgStyle {
 	src: any;
 	alt: any;
+	onChange?: string;
 }
 
 type imgStyle = {
@@ -16,6 +17,9 @@ type imgStyle = {
 	bottom?: string;
 	left?: string;
 	clip_path?: string;
+	transform?: string;
+	onChange?: string;
+	transition?: string;
 };
 
 const IMG = styled.img<imgStyle>`
@@ -28,10 +32,12 @@ const IMG = styled.img<imgStyle>`
 	left: ${(props) => props.left || '0px'};
 	margin: ${(props) => props.margin || '0px'};
 	clip-path: ${(props) => props.clip_path || 'none'};
+	transform: ${(props) => props.transform || 'none'};
+	transition: ${(props) => props.transition || 'none'};
 `;
 
-const Img: FC<IImg> = ({ src, alt, ...props }) => {
-	return <IMG src={src} alt={alt} {...props} />;
+const Img: FC<IImg> = ({ src, alt, onChange, ...props }) => {
+	return <IMG src={src} onChange={onChange} alt={alt} {...props} />;
 };
 
 export default Img;

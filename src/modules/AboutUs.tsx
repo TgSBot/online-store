@@ -4,6 +4,7 @@ import Text from '../UI/Text/Text';
 import BlockText from '../UI/BlockText/BlockText';
 import Img from '../UI/IMG/Img';
 import sneak from '../assets/img/pexels-budgeron-bach-51588252-sneakers.png';
+import Circle from '../UI/Circle/Circle';
 
 const Wrapper = styled.div`
 	width: 100%;
@@ -11,15 +12,17 @@ const Wrapper = styled.div`
 	display: flex;
 	background-color: #484283;
 	justify-content: center;
+	position: relative;
 `;
 
 const Row = styled.div`
-	width: fit-content;
+	width: 1180px;
 	height: fit-content;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	position: relative;
+	overflow: hidden;
 `;
 
 const Title = styled.div`
@@ -55,6 +58,39 @@ const TextBefore = styled.div`
 const AboutUs = () => {
 	return (
 		<Wrapper>
+			<Circle
+				width='644px'
+				height='644px'
+				border='1px solid rgba(255, 255, 255, 0.50)'
+				ground_color=''
+				position='absolute'
+				left='-360px'
+				top='-200px'
+			/>
+			<BlockText
+				width='fit-content'
+				height='fit-content'
+				position='absolute'
+				top='-190px'
+				left='210px'
+			>
+				<Circle
+					width='297px'
+					height='297px'
+					border='1px solid rgba(255, 255, 255, 0.50)'
+					ground_color=''
+				/>
+				<Circle
+					width='15px'
+					height='15px'
+					ground_color='#F14F4F'
+					position='absolute'
+					top='240px'
+					left='252px'
+					border='px solid #F14F4F'
+				/>
+			</BlockText>
+
 			<Row>
 				<Title>
 					<BlockText
@@ -96,11 +132,10 @@ const AboutUs = () => {
 				<Img
 					src={sneak}
 					alt={'Кроссовки'}
-					width='949px'
-					height='633px'
+					width='870px'
+					height='588px'
 					position='relative'
-					left='-46px'
-					clip_path='polygon(36% 0, 91% 0, 74% 100%, 15% 100%)'
+					clip_path='polygon(45% 0, 100% 0%, 74% 100%, 13% 100%)'
 				/>
 			</Row>
 		</Wrapper>
