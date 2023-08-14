@@ -11,6 +11,7 @@ interface IText extends PropsWithChildren {
 	color?: string;
 	margin?: string;
 	text_align?: string;
+	display?: string;
 }
 
 const StyledText = styled.span<IText>`
@@ -22,6 +23,7 @@ const StyledText = styled.span<IText>`
 	color: ${(props) => props.color || 'white'};
 	margin: ${({ margin }) => margin || '0px'};
 	text-align: ${(props) => props.text_align || 'none'};
+	display: ${(props) => props.display || 'inline-block'};
 `;
 
 const Text: FC<IText> = ({ children, ...props }) => {
