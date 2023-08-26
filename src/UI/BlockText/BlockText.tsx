@@ -22,6 +22,7 @@ type BlockTextStyle = {
 	background_color?: string;
 	transition?: string;
 	opacity?: string;
+	z_index?: string;
 };
 
 const BlockTextStyled = styled.div<BlockTextStyle>`
@@ -42,6 +43,7 @@ const BlockTextStyled = styled.div<BlockTextStyle>`
 	background-color: ${(props) => props.background_color};
 	transition: ${(props) => props.transition || 'none'};
 	opacity: ${(props) => props.opacity || '1'};
+	z-index: ${(props) => props.z_index || '0'};
 `;
 
 const BlockText: FC<IBlockText> = ({ children, onClick, ...props }) => {

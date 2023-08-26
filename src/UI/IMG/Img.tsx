@@ -20,6 +20,7 @@ type imgStyle = {
 	transform?: string;
 	onChange?: string;
 	transition?: string;
+	fill?: string;
 };
 
 const IMG = styled.img<imgStyle>`
@@ -34,6 +35,7 @@ const IMG = styled.img<imgStyle>`
 	clip-path: ${(props) => props.clip_path || 'none'};
 	transform: ${(props) => props.transform || 'none'};
 	transition: ${(props) => props.transition || 'none'};
+	fill: ${(props) => props.fill};
 `;
 
 const Img: FC<IImg> = ({ src, alt, onChange, ...props }) => {

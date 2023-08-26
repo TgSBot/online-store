@@ -12,6 +12,8 @@ interface IText extends PropsWithChildren {
 	margin?: string;
 	text_align?: string;
 	display?: string;
+	letter_spacing?: string;
+	text_transform?: string;
 }
 
 const StyledText = styled.span<IText>`
@@ -24,6 +26,8 @@ const StyledText = styled.span<IText>`
 	margin: ${({ margin }) => margin || '0px'};
 	text-align: ${(props) => props.text_align || 'none'};
 	display: ${(props) => props.display || 'inline-block'};
+	letter-spacing: ${(props) => props.letter_spacing};
+	text-transform: ${(props) => props.text_transform};
 `;
 
 const Text: FC<IText> = ({ children, ...props }) => {
