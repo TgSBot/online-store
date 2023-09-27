@@ -55,9 +55,9 @@ const Selection: FC = () => {
 		dispatch(changeSizeShoes(event.target.value));
 	};
 
-	const defaultSortSettings = useCallback(() => {
+	const defaultSortSettings = () => {
 		dispatch(changeStateDefault());
-	}, [dispatch, changeStateDefault]);
+	};
 
 	const InputRangePrice = () => {
 		return <BlockPrice />;

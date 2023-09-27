@@ -1,12 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import ReactSlider from 'react-slider';
 import { styled } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../hook/redux';
 import { sortSliceShoes } from '../../../store/reducers/SortPostsShoes';
-
-interface IInputRange {
-	defaultSettings?: any;
-}
 
 type PropsTrackColor = {
 	thumb: number;
@@ -46,19 +42,32 @@ const Track = (props: object, state: any) => (
 	<StyledTrack {...props} thumb={state.index} />
 );
 
-const InputRange: FC<IInputRange> = ({ defaultSettings }) => {
+const InputRange: FC = () => {
+	const [minRange, setMinRange] = useState(0);
+	const [maxRange, setMaxRange] = useState(100);
+
 	// Для взаимодействия со store
-	const { maxPrice, minPrice } = useAppSelector(
-		(state) => state.sortPostsShoes
-	);
-	const { changeMinimumPrice, changeMaximumPrice } = sortSliceShoes.actions;
+	const { defaultVelues } = useAppSelector((state) => state.sortPostsShoes);
+
+	const { changeMinimumPrice, changeMaximumPrice, changeDefaultVelues } =
+		sortSliceShoes.actions;
 	const dispatch = useAppDispatch();
 
 	//Value - значение
 	const ChangeValueSlider = (value: any) => {
-		dispatch(changeMinimumPrice(Math.round(value[0])));
-		dispatch(changeMaximumPrice(Math.round(value[1])));
+		setMaxRange(value[1]);
+		setMinRange(value[0]);
+		dispatch(changeMinimumPrice(value[0]));
+		dispatch(changeMaximumPrice(value[1]));
 	};
+
+	useEffect(() => {
+		if (defaultVelues === true) {
+			setMinRange(0);
+			setMaxRange(100);
+			dispatch(changeDefaultVelues(false));
+		}
+	}, [defaultVelues]);
 
 	return (
 		<>
@@ -66,7 +75,7 @@ const InputRange: FC<IInputRange> = ({ defaultSettings }) => {
 				renderTrack={Track} // Кастомная линия ползунка
 				renderThumb={Thumb} // Кастомный ползунок
 				minDistance={1.7} // Минимальная дистанция между ползунками
-				defaultValue={[minPrice, maxPrice]}
+				value={[minRange, maxRange]}
 				onChange={ChangeValueSlider}
 			/>
 		</>
