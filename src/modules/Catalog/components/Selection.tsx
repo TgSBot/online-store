@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC } from 'react';
 import { styled } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../hook/redux';
 import { sortSliceShoes } from '../../../store/reducers/SortPostsShoes';

@@ -67,7 +67,7 @@ const InputRange: FC = () => {
 			setMaxRange(100);
 			dispatch(changeDefaultVelues(false));
 		}
-	}, [defaultVelues]);
+	}, [defaultVelues, dispatch, changeDefaultVelues]);
 
 	return (
 		<>
