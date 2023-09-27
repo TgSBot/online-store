@@ -14,6 +14,8 @@ interface IText extends PropsWithChildren {
 	display?: string;
 	letter_spacing?: string;
 	text_transform?: string;
+	z_index?: string;
+	onClick?: any;
 }
 
 const StyledText = styled.span<IText>`
@@ -24,17 +26,20 @@ const StyledText = styled.span<IText>`
 	font-style: ${(props) => props.fontStyle || 'normal '};
 	color: ${(props) => props.color || 'white'};
 	margin: ${({ margin }) => margin || '0px'};
-	text-align: ${(props) => props.text_align || 'none'};
+	text-align: ${(props) => props.text_align || 'start'};
 	display: ${(props) => props.display || 'inline-block'};
 	letter-spacing: ${(props) => props.letter_spacing};
 	text-transform: ${(props) => props.text_transform};
+	z-index: ${(props) => props.z_index || '0'};
 `;
 
-const Text: FC<IText> = ({ children, ...props }) => {
+const Text: FC<IText> = ({ children, onClick, ...props }) => {
 	return (
 		<>
 			<Fonts />
-			<StyledText {...props}>{children}</StyledText>
+			<StyledText onClick={onClick} {...props}>
+				{children}
+			</StyledText>
 		</>
 	);
 };

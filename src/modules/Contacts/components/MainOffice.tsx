@@ -26,6 +26,7 @@ const MainOffice = () => {
 			width='fit-content'
 			height='fit-content'
 			margin='0px 0px 40px 0px'
+			position='relative'
 		>
 			<Text
 				fontFamily='Intro-Book'
@@ -46,8 +47,8 @@ const MainOffice = () => {
 			/>
 			<PopUp
 				explanation={true}
-				top={'67px'}
-				left={'469px'}
+				top={'-90px'}
+				left={'130px'}
 				animation={
 					focus === true
 						? 'appearance 0.2s ease 1 normal running 0s both'

@@ -1,10 +1,10 @@
 import React from 'react';
-import Contacts from '../modules/Contacts/Contacts';
+import Catalog from '../modules/Catalog/Catalog';
 
 const HomePage = () => {
 	return (
 		<>
-			<Contacts />
+			<Catalog />
 		</>
 	);
 };

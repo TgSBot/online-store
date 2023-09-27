@@ -23,6 +23,7 @@ type BlockTextStyle = {
 	transition?: string;
 	opacity?: string;
 	z_index?: string;
+	flex_wrap?: string;
 };
 
 const BlockTextStyled = styled.div<BlockTextStyle>`
@@ -44,6 +45,7 @@ const BlockTextStyled = styled.div<BlockTextStyle>`
 	transition: ${(props) => props.transition || 'none'};
 	opacity: ${(props) => props.opacity || '1'};
 	z-index: ${(props) => props.z_index || '0'};
+	flex-wrap: ${(props) => props.flex_wrap};
 `;
 
 const BlockText: FC<IBlockText> = ({ children, onClick, ...props }) => {

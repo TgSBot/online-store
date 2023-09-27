@@ -4,13 +4,15 @@ import { styled } from 'styled-components';
 interface IButton extends PropsWithChildren, ButtonStyle {}
 
 type ButtonStyle = {
-	ground_color: string;
+	ground_color?: string;
 	width: string;
 	height: string;
 	border_radius?: string;
 	margin?: string;
 	type?: string;
 	disabled?: any;
+	onClick?: any;
+	value?: number;
 };
 
 const ButtonStyled = styled.button<ButtonStyle>`
@@ -24,9 +26,9 @@ const ButtonStyled = styled.button<ButtonStyle>`
 	margin: ${(props) => props.margin || 0};
 `;
 
-const Button: FC<IButton> = ({ children, type, ...props }) => {
+const Button: FC<IButton> = ({ children, type, onClick, value, ...props }) => {
 	return (
-		<ButtonStyled type={type} {...props}>
+		<ButtonStyled type={type} onClick={onClick} value={value} {...props}>
 			{children}
 		</ButtonStyled>
 	);

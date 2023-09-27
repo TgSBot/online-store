@@ -98,4 +98,7 @@ input[type="text"], input[type="tel"] {
 	color: black;
 }
 
+input[type='checkbox'] {
+	display: none;
+}
 `;
