@@ -41,25 +41,27 @@ const Catalog = () => {
 
 	const price = Price();
 
-	const fetchPosts = async () => {
+	function setPrice() {
+		dispatch(changePrice(price));
+	}
+	setTimeout(setPrice, 0);
+
+	const resetPostsButton = async () => {
 		setLoading(true);
 		const posts = await getPosts();
 		dispatch(changePosts(posts));
 		setLoading(false);
 	};
 
-	function setPrice() {
-		dispatch(changePrice(price));
-	}
-	setTimeout(setPrice, 0);
-
-	const renderPosts = () => {
-		fetchPosts();
-	};
-
 	useEffect(() => {
+		const fetchPosts = async () => {
+			setLoading(true);
+			const posts = await getPosts();
+			dispatch(changePosts(posts));
+			setLoading(false);
+		};
 		fetchPosts();
-	}, []);
+	}, [changePosts, dispatch]);
 
 	return (
 		<Wrapper>
@@ -107,7 +109,7 @@ const Catalog = () => {
 									ground_color='#F14F4F'
 									border_radius='4px'
 									margin='0px 0px 60px 0px'
-									onClick={renderPosts}
+									onClick={resetPostsButton}
 								>
 									<Text fontFamily='Intro-Regular' fontSize='16px' color='#FFF'>
 										Показать ещё
