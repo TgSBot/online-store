@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import sortPostsShoes from './reducers/SortPostsShoes';
+import allPosts from './reducers/AllPosts';
 
 const rootReducer = combineReducers({
 	sortPostsShoes,
+	allPosts,
 });
 
 export const setupStore = () => {

@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { maxPrice } from '../../assets/list/PostsCatalog';
 
 interface ISort {
 	minPrice: number;
@@ -13,8 +12,8 @@ interface ISort {
 
 const initialState: ISort = {
 	minPrice: 0,
-	maxPrice: maxPrice,
-	stateMaxPrice: maxPrice,
+	maxPrice: 0,
+	stateMaxPrice: 10000,
 	male: false,
 	female: false,
 	sizeShoes: undefined,
@@ -26,10 +25,10 @@ export const sortSliceShoes = createSlice({
 	initialState,
 	reducers: {
 		changeMinimumPrice(state, action) {
-			state.minPrice = (state.stateMaxPrice * action.payload) / 100;
+			state.minPrice = Math.ceil((state.stateMaxPrice * action.payload) / 100);
 		},
 		changeMaximumPrice(state, action) {
-			state.maxPrice = (state.stateMaxPrice * action.payload) / 100;
+			state.maxPrice = Math.ceil((state.stateMaxPrice * action.payload) / 100);
 		},
 		changeGenderFemale(state, action) {
 			if (state.male === true) {
@@ -53,14 +52,18 @@ export const sortSliceShoes = createSlice({
 		changeStateDefault(state) {
 			state.female = false;
 			state.male = false;
-			state.maxPrice = maxPrice;
+			state.maxPrice = 10000;
 			state.minPrice = 0;
 			state.sizeShoes = undefined;
-			state.stateMaxPrice = maxPrice;
+			state.stateMaxPrice = 10000;
 			state.defaultVelues = true;
 		},
 		changeDefaultVelues(state, action) {
 			state.defaultVelues = action.payload;
+		},
+		changePrice(state, action) {
+			state.maxPrice = Math.ceil(action.payload[1]);
+			state.stateMaxPrice = Math.ceil(action.payload[1]);
 		},
 	},
 });

@@ -8,17 +8,26 @@ import Text from '../../../UI/Text/Text';
 import BlockPrice from './BlockPrice';
 import GenderSelection from './GenderSelection';
 
+interface ISelection {
+	margin?: string;
+}
+
 type propsButtonSizeShoes = {
 	border_radius?: string;
 	border?: string;
 };
 
-const Wrapper = styled.div`
+type WrapperProps = {
+	margin?: string;
+};
+
+const Wrapper = styled.div<WrapperProps>`
 	width: fit-content;
 	height: fit-content;
 	background-color: #fff4ee;
 	border: 1px solid #fff4ee;
 	border-radius: 4px;
+	margin: ${(props) => props.margin || '0px'};
 `;
 
 const Row = styled.div`
@@ -39,7 +48,7 @@ const ButtonSizeSort = styled(Button)<propsButtonSizeShoes>`
 	}
 `;
 
-const Selection: FC = () => {
+const Selection: FC<ISelection> = ({ margin }) => {
 	const { changeSizeShoes, changeStateDefault } = sortSliceShoes.actions;
 	const { minPrice, maxPrice, male, female, sizeShoes } = useAppSelector(
 		(state) => state.sortPostsShoes
@@ -63,10 +72,6 @@ const Selection: FC = () => {
 		return <BlockPrice />;
 	};
 
-	// useEffect(() => {
-	// 	InputRangePrice();
-	// }, [defaultSortSettings]);
-
 	const outputValues = () => {
 		alert(`
 			Цена -> Минимальная цена: ${minPrice}, Максимальная цена: ${maxPrice},
@@ -75,7 +80,7 @@ const Selection: FC = () => {
 	};
 
 	return (
-		<Wrapper>
+		<Wrapper margin={margin}>
 			<Row>
 				<BlockText width='240px' height='fit-content'>
 					<Text

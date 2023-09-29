@@ -24,6 +24,8 @@ type BlockTextStyle = {
 	opacity?: string;
 	z_index?: string;
 	flex_wrap?: string;
+	onMouseEnter?: any;
+	onMouseLeave?: any;
 };
 
 const BlockTextStyled = styled.div<BlockTextStyle>`
@@ -48,9 +50,20 @@ const BlockTextStyled = styled.div<BlockTextStyle>`
 	flex-wrap: ${(props) => props.flex_wrap};
 `;
 
-const BlockText: FC<IBlockText> = ({ children, onClick, ...props }) => {
+const BlockText: FC<IBlockText> = ({
+	children,
+	onClick,
+	onMouseEnter,
+	onMouseLeave,
+	...props
+}) => {
 	return (
-		<BlockTextStyled onClick={onClick} {...props}>
+		<BlockTextStyled
+			onClick={onClick}
+			onMouseEnter={onMouseEnter}
+			onMouseLeave={onMouseLeave}
+			{...props}
+		>
 			{children}
 		</BlockTextStyled>
 	);

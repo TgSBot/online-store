@@ -25,13 +25,7 @@ const BlockPrice: FC = () => {
 	const { minPrice, maxPrice } = useAppSelector(
 		(state) => state.sortPostsShoes
 	);
-	// Перевод числа в массив и его переворот
-	const stringMaxPrice = String(maxPrice).split('').reverse();
-	const stringMinPrice = String(minPrice).split('').reverse();
-
-	// Добавление пробела к числу
-	stringMaxPrice.splice(3, 0, ' ');
-	if (stringMinPrice.length > 3) stringMinPrice.splice(3, 0, ' ');
+	const { loading } = useAppSelector((state) => state.allPosts);
 
 	return (
 		<BlockPriceStyled>
@@ -43,8 +37,7 @@ const BlockPrice: FC = () => {
 				left='42px'
 			>
 				<Text fontFamily='Intro-Book' fontSize='16px' color='#444B58'>
-					{/* Переворот массива и перевод его обратно в строку */}
-					{stringMinPrice.reverse().join('')}
+					{minPrice}
 				</Text>
 			</BlockText>
 			<VerticalLine />
@@ -56,8 +49,7 @@ const BlockPrice: FC = () => {
 				left='155px'
 			>
 				<Text fontFamily='Intro-Book' fontSize='16px' color='#444B58'>
-					{/* Переворот массива и перевод его обратно в строку */}
-					{stringMaxPrice.reverse().join('')}
+					{loading === true ? '0' : maxPrice}
 				</Text>
 			</BlockText>
 			<InputRange />
