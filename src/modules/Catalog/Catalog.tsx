@@ -50,13 +50,10 @@ const Catalog = () => {
 	const resetPostsButton = async () => {
 		dispatch(changeLoadingPosts(true));
 		const posts = await getPosts();
-		if (typeof posts === 'number') {
-			dispatch(changeStatusError(true));
-			dispatch(changeLoadingPosts(false));
-		} else {
-			dispatch(changePosts(posts.data.data));
-			dispatch(changeLoadingPosts(false));
-		}
+		posts?.code
+			? dispatch(changeStatusError(true))
+			: dispatch(changePosts(posts.data.data));
+		dispatch(changeLoadingPosts(false));
 	};
 
 	useEffect(() => {
