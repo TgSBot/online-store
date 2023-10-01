@@ -11,7 +11,7 @@ export const getPosts = async () => {
 		return posts;
 	} catch (error) {
 		if (axios.isAxiosError(error)) {
-			return error.response?.data.code;
+			return error.response?.data;
 		} else if (error instanceof Error) {
 			return error.message;
 		}
