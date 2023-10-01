@@ -1,16 +1,31 @@
 import React, { FC } from 'react';
 import { styled } from 'styled-components';
 import { useAppSelector } from '../../../hook/redux';
-import BlockText from '../../../UI/BlockText/BlockText';
 import Text from '../../../UI/Text/Text';
 import InputRange from './InputRange';
 
+interface PropsPrice {
+	border_width: string;
+	border_radius: string;
+}
+
 const BlockPriceStyled = styled.div`
-	width: 240px;
-	height: 50px;
-	border-radius: 4px;
-	border: 1px solid #b2b5bb;
+	width: fit-content;
+	height: fit-content;
+	display: flex;
 	position: relative;
+`;
+
+const Price = styled.div<PropsPrice>`
+	width: 119.5px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-width: ${(props) => props.border_width};
+	border-style: solid;
+	border-color: #b2b5bb;
+	border-radius: ${(props) => props.border_radius};
 `;
 
 // Вертикальная черта по середине блока цены
@@ -18,7 +33,9 @@ const VerticalLine = styled.hr`
 	width: 1px;
 	height: 34px;
 	background-color: #b2b5bb;
-	margin: 8px auto;
+	position: absolute;
+	left: 50%;
+	top: 8px;
 `;
 
 const BlockPrice: FC = () => {
@@ -28,32 +45,22 @@ const BlockPrice: FC = () => {
 	const { loading, error } = useAppSelector((state) => state.allPosts);
 
 	return (
-		<BlockPriceStyled>
-			<BlockText
-				width='fit-content'
-				height='fit-content'
-				position='absolute'
-				top='17px'
-				left='40px'
-			>
-				<Text fontFamily='Intro-Book' fontSize='16px' color='#444B58'>
-					{minPrice}
-				</Text>
-			</BlockText>
-			<VerticalLine />
-			<BlockText
-				width='fit-content'
-				height='fit-content'
-				position='absolute'
-				top='17px'
-				left='155px'
-			>
-				<Text fontFamily='Intro-Book' fontSize='16px' color='#444B58'>
-					{loading === true ? '0' : error === true ? '0' : maxPrice}
-				</Text>
-			</BlockText>
+		<>
+			<BlockPriceStyled>
+				<Price border_width='1px 0px 1px 1px' border_radius='4px 0px 0px 4px'>
+					<Text fontFamily='Intro-Book' fontSize='16px' color='#444B58'>
+						{minPrice}
+					</Text>
+				</Price>
+				<VerticalLine />
+				<Price border_width='1px 1px 1px 0px' border_radius='0px 4px 4px 0px'>
+					<Text fontFamily='Intro-Book' fontSize='16px' color='#444B58'>
+						{error === true ? '0' : loading === true ? '0' : maxPrice}
+					</Text>
+				</Price>
+			</BlockPriceStyled>
 			<InputRange />
-		</BlockPriceStyled>
+		</>
 	);
 };
 
