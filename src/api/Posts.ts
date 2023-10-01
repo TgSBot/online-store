@@ -8,10 +8,10 @@ export const getPosts = async () => {
 				params: { _quantity: 9 },
 			}
 		);
-		return posts.data.data;
+		return posts;
 	} catch (error) {
 		if (axios.isAxiosError(error)) {
-			return error.response?.data.error;
+			return error.response?.data.code;
 		} else if (error instanceof Error) {
 			return error.message;
 		}

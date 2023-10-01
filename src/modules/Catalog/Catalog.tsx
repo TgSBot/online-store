@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
 import Text from '../../UI/Text/Text';
 import Selection from './components/Selection';
@@ -32,11 +32,12 @@ const Posts = styled(BlockText)`
 `;
 
 const Catalog = () => {
-	const [loading, setLoading] = useState(false);
-
-	const { allPosts } = useAppSelector((state) => state.allPosts);
+	const { allPosts, loading, error } = useAppSelector(
+		(state) => state.allPosts
+	);
 	const { changePrice } = sortSliceShoes.actions;
-	const { changePosts } = sliceAllPosts.actions;
+	const { changePosts, changeLoadingPosts, changeStatusError } =
+		sliceAllPosts.actions;
 	const dispatch = useAppDispatch();
 
 	const price = Price();
@@ -47,21 +48,31 @@ const Catalog = () => {
 	setTimeout(setPrice, 0);
 
 	const resetPostsButton = async () => {
-		setLoading(true);
+		dispatch(changeLoadingPosts(true));
 		const posts = await getPosts();
-		dispatch(changePosts(posts));
-		setLoading(false);
+		if (posts.data.code !== 200) {
+			dispatch(changeStatusError(true));
+			dispatch(changeLoadingPosts(false));
+		} else {
+			dispatch(changePosts(posts.data.data));
+			dispatch(changeLoadingPosts(false));
+		}
 	};
 
 	useEffect(() => {
 		const fetchPosts = async () => {
-			setLoading(true);
+			dispatch(changeLoadingPosts(true));
 			const posts = await getPosts();
-			dispatch(changePosts(posts));
-			setLoading(false);
+			if (typeof posts === 'number') {
+				dispatch(changeStatusError(true));
+				dispatch(changeLoadingPosts(false));
+			} else {
+				dispatch(changePosts(posts.data.data));
+				dispatch(changeLoadingPosts(false));
+			}
 		};
 		fetchPosts();
-	}, [changePosts, dispatch]);
+	}, [changePosts, dispatch, changeLoadingPosts, changeStatusError]);
 
 	return (
 		<Wrapper>
@@ -82,6 +93,10 @@ const Catalog = () => {
 							<Text fontFamily='Intro-Bold' fontSize='30px' color='#444B58'>
 								Идёт загрузка...
 							</Text>
+						) : error === true ? (
+							<Text fontFamily='Intro-Bold' fontSize='30px' color='#444B58'>
+								Произошла ошибка при загрузке товаров
+							</Text>
 						) : (
 							allPosts.map((post) => {
 								return (
@@ -95,6 +110,8 @@ const Catalog = () => {
 							})
 						)}
 						{loading === true ? (
+							''
+						) : error === true ? (
 							''
 						) : (
 							<BlockText

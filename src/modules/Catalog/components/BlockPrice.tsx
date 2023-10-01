@@ -25,7 +25,7 @@ const BlockPrice: FC = () => {
 	const { minPrice, maxPrice } = useAppSelector(
 		(state) => state.sortPostsShoes
 	);
-	const { loading } = useAppSelector((state) => state.allPosts);
+	const { loading, error } = useAppSelector((state) => state.allPosts);
 
 	return (
 		<BlockPriceStyled>
@@ -34,7 +34,7 @@ const BlockPrice: FC = () => {
 				height='fit-content'
 				position='absolute'
 				top='17px'
-				left='42px'
+				left='40px'
 			>
 				<Text fontFamily='Intro-Book' fontSize='16px' color='#444B58'>
 					{minPrice}
@@ -49,7 +49,7 @@ const BlockPrice: FC = () => {
 				left='155px'
 			>
 				<Text fontFamily='Intro-Book' fontSize='16px' color='#444B58'>
-					{loading === true ? '0' : maxPrice}
+					{loading === true ? '0' : error === true ? '0' : maxPrice}
 				</Text>
 			</BlockText>
 			<InputRange />
