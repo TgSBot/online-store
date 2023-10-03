@@ -7,11 +7,16 @@ interface IPosts {
 	description: string;
 	net_price: number;
 	price: string;
+	gender: string;
+	rating: number;
+	productAvailability: number;
+	size: number;
 	tags: string[];
 }
 
 interface IAllPosts {
 	allPosts: [IPosts] | [];
+	selectedPosts: [IPosts] | [];
 	price: [];
 	loading: boolean;
 	error: boolean;
@@ -19,6 +24,7 @@ interface IAllPosts {
 
 const initialState: IAllPosts = {
 	allPosts: [],
+	selectedPosts: [],
 	price: [],
 	loading: false,
 	error: false,
@@ -36,6 +42,9 @@ export const sliceAllPosts = createSlice({
 		},
 		changeStatusError(state, action) {
 			state.error = action.payload;
+		},
+		changeSelectedPosts(state, action) {
+			state.selectedPosts = action.payload;
 		},
 	},
 });

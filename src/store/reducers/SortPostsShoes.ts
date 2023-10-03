@@ -8,6 +8,7 @@ interface ISort {
 	female: boolean;
 	sizeShoes: number | undefined;
 	defaultVelues: boolean;
+	sorted: false;
 }
 
 const initialState: ISort = {
@@ -18,6 +19,7 @@ const initialState: ISort = {
 	female: false,
 	sizeShoes: undefined,
 	defaultVelues: false,
+	sorted: false,
 };
 
 export const sortSliceShoes = createSlice({
@@ -57,6 +59,7 @@ export const sortSliceShoes = createSlice({
 			state.sizeShoes = undefined;
 			state.stateMaxPrice = 10000;
 			state.defaultVelues = true;
+			state.sorted = false;
 		},
 		changeDefaultVelues(state, action) {
 			state.defaultVelues = action.payload;
