@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { styled } from 'styled-components';
 import { useAppSelector } from '../../../hook/redux';
 import Text from '../../../UI/Text/Text';
@@ -44,6 +44,16 @@ const BlockPrice: FC = () => {
 	);
 	const { loading, error } = useAppSelector((state) => state.allPosts);
 
+	const blockMaxPrice = useCallback(() => {
+		return (
+			<Price border_width='1px 1px 1px 0px' border_radius='0px 4px 4px 0px'>
+				<Text fontFamily='Intro-Book' fontSize='16px' color='#444B58'>
+					{error === true ? '0' : loading === true ? '0' : maxPrice}
+				</Text>
+			</Price>
+		);
+	}, [error, loading, maxPrice]);
+
 	return (
 		<>
 			<BlockPriceStyled>
@@ -53,11 +63,7 @@ const BlockPrice: FC = () => {
 					</Text>
 				</Price>
 				<VerticalLine />
-				<Price border_width='1px 1px 1px 0px' border_radius='0px 4px 4px 0px'>
-					<Text fontFamily='Intro-Book' fontSize='16px' color='#444B58'>
-						{error === true ? '0' : loading === true ? '0' : maxPrice}
-					</Text>
-				</Price>
+				{blockMaxPrice()}
 			</BlockPriceStyled>
 			<InputRange />
 		</>

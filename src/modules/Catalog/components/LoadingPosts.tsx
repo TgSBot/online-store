@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
 import BlockText from '../../../UI/BlockText/BlockText';
 import shoes from '../../../assets/img/image.jpg';
@@ -8,7 +8,6 @@ import { getPosts } from '../../../api/Posts';
 import { useAppDispatch, useAppSelector } from '../../../hook/redux';
 import { sortSliceShoes } from '../../../store/reducers/SortPostsShoes';
 import { sliceAllPosts } from '../../../store/reducers/AllPosts';
-import Price from '../../../helpers/Price';
 import Post from './Post';
 import {
 	randomProductAvailability,
@@ -23,37 +22,41 @@ const Posts = styled(BlockText)`
 `;
 
 const LoadingPosts = () => {
-	// Индексы для новых постов
-	const [page, setPage] = useState({ start: 9, end: 18 });
-
 	// Redux
-	const { allPosts, loading, error, selectedPosts } = useAppSelector(
-		(state) => state.allPosts
-	);
-	const { changePrice } = sortSliceShoes.actions;
+	const {
+		allPosts,
+		loading,
+		error,
+		selectedPosts,
+		defaultValue,
+		filteredPosts,
+		sorted,
+	} = useAppSelector((state) => state.allPosts);
+	const { page } = useAppSelector((state) => state.sortPostsShoes);
+	const { changePrice, changePagePost } = sortSliceShoes.actions;
 	const {
 		changePosts,
 		changeLoadingPosts,
 		changeStatusError,
 		changeSelectedPosts,
+		changeStatusDefaultValue,
+		changeFilteredPosts,
 	} = sliceAllPosts.actions;
 	const dispatch = useAppDispatch();
 
-	// Выставление максимальной и минимальной цены товара
-	const price = Price();
-
-	// Передача значений(max, min) после загрузки постов
-	const setPrice = () => {
-		dispatch(changePrice(price));
-	};
-	setTimeout(setPrice, 0);
-
 	// Кнопка подгрузки новых постов
-	function resetPostsButton() {
+	function loadingPostsButton() {
 		dispatch(changeLoadingPosts(true));
-		setPage({ start: (page.start += 9), end: (page.end += 9) });
-		const selectedPosts = allPosts.slice(page.start, page.end);
-		dispatch(changeSelectedPosts(selectedPosts));
+		if (!sorted) {
+			const selectedPosts = allPosts.slice(page.start, page.end);
+			dispatch(changePagePost());
+			dispatch(changeSelectedPosts(selectedPosts));
+		}
+		if (sorted) {
+			const filteredPost = filteredPosts.slice(page.start, page.end);
+			dispatch(changePagePost());
+			dispatch(changeFilteredPosts(filteredPost));
+		}
 		dispatch(changeLoadingPosts(false));
 	}
 
@@ -92,7 +95,39 @@ const LoadingPosts = () => {
 		const selectedPosts = allPosts.slice(0, 9);
 		dispatch(changeSelectedPosts(selectedPosts));
 		dispatch(changeLoadingPosts(false));
-	}, [allPosts, changeLoadingPosts, changeSelectedPosts, dispatch]);
+		if (defaultValue) dispatch(changeStatusDefaultValue(false));
+	}, [
+		allPosts,
+		changeLoadingPosts,
+		changeSelectedPosts,
+		dispatch,
+		defaultValue,
+		changeStatusDefaultValue,
+	]);
+
+	useEffect(() => {
+		// Выставление максимальной и минимальной цены товара
+		const arrayPrice = allPosts.map((element) => {
+			let price = [];
+			price.push(Number(element.price));
+			return price;
+		});
+
+		const minPrice = Math.min(...arrayPrice.flat());
+		const maxPrice = Math.max(...arrayPrice.flat());
+
+		// Передача значений(max, min) после загрузки постов
+		const setPrice = () => {
+			dispatch(changePrice([minPrice, maxPrice]));
+		};
+		setTimeout(setPrice, 0);
+	}, [dispatch, changePrice, allPosts]);
+
+	// Для проверки на фильтрационный массив
+	const returnStatusPosts = () => {
+		if (filteredPosts.length > 0 && sorted) return filteredPosts.slice(0, 9);
+		return selectedPosts;
+	};
 
 	return (
 		<Posts width='900px' height='fit-content'>
@@ -105,7 +140,7 @@ const LoadingPosts = () => {
 					Произошла ошибка при загрузке товаров
 				</Text>
 			) : (
-				selectedPosts.map((post) => {
+				returnStatusPosts().map((post) => {
 					return (
 						<Post
 							key={post.id}
@@ -120,7 +155,9 @@ const LoadingPosts = () => {
 				''
 			) : error ? (
 				''
-			) : page.start === 99 ? (
+			) : selectedPosts.length < 9 ? (
+				''
+			) : filteredPosts.length < 9 && sorted ? (
 				''
 			) : (
 				<BlockText
@@ -135,7 +172,7 @@ const LoadingPosts = () => {
 						ground_color='#F14F4F'
 						border_radius='4px'
 						margin='0px 0px 60px 0px'
-						onClick={resetPostsButton}
+						onClick={loadingPostsButton}
 					>
 						<Text fontFamily='Intro-Regular' fontSize='16px' color='#FFF'>
 							Показать ещё

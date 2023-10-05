@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { styled } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../hook/redux';
+import { sliceAllPosts } from '../../../store/reducers/AllPosts';
 import { sortSliceShoes } from '../../../store/reducers/SortPostsShoes';
 import BlockText from '../../../UI/BlockText/BlockText';
 import Button from '../../../UI/Button/Button';
@@ -49,12 +50,20 @@ const ButtonSizeSort = styled(Button)<propsButtonSizeShoes>`
 `;
 
 const Selection: FC<ISelection> = ({ margin }) => {
-	const { changeSizeShoes, changeStateDefault } = sortSliceShoes.actions;
+	const { changeSizeShoes, changeStateDefault, changeDefaultStatePagePost } =
+		sortSliceShoes.actions;
 	const { minPrice, maxPrice, male, female, sizeShoes } = useAppSelector(
 		(state) => state.sortPostsShoes
 	);
+	const { allPosts } = useAppSelector((state) => state.allPosts);
+	const {
+		changeStatusDefaultValue,
+		changeFilteredPosts,
+		changeStatusSortedPosts,
+	} = sliceAllPosts.actions;
 	const dispatch = useAppDispatch();
 
+	// Массив для кнопки размера
 	const sizeShoesArray = [35, 36, 37, 38, 39, 40, 41, 42, 43];
 
 	const onChangeSizeShoes = (
@@ -66,6 +75,9 @@ const Selection: FC<ISelection> = ({ margin }) => {
 
 	const defaultSortSettings = () => {
 		dispatch(changeStateDefault());
+		dispatch(changeStatusDefaultValue(true));
+		dispatch(changeStatusSortedPosts());
+		dispatch(changeDefaultStatePagePost());
 	};
 
 	const InputRangePrice = () => {
@@ -73,10 +85,29 @@ const Selection: FC<ISelection> = ({ margin }) => {
 	};
 
 	const outputValues = () => {
-		alert(`
-			Цена -> Минимальная цена: ${minPrice}, Максимальная цена: ${maxPrice},
-			Пол -> ${male === true ? 'Мужской' : female === true ? 'Женский' : 'Не выбран'}
-			Размер обуви -> ${sizeShoes}`);
+		// Фильтрация по цене
+		const filterPricePost = allPosts.filter(
+			(post) => minPrice <= Number(post.price) && maxPrice >= Number(post.price)
+		);
+
+		// Фильтрация по полу
+		const filterGenderPost = filterPricePost.filter((post) => {
+			if (post.gender === 'male' && male) return true;
+			if (post.gender === 'female' && female) return true;
+			if (male === false && female === false) return true;
+			return false;
+		});
+
+		// Фильтрация по размеру
+		const filterSizeShoes = filterGenderPost.filter((post) => {
+			if (post.sizeShoes === Number(sizeShoes)) return true;
+			if (sizeShoes === undefined) return true;
+			return false;
+		});
+
+		console.log(filterSizeShoes);
+		dispatch(changeDefaultStatePagePost());
+		dispatch(changeFilteredPosts(filterSizeShoes));
 	};
 
 	return (
@@ -167,6 +198,7 @@ const Selection: FC<ISelection> = ({ margin }) => {
 					border_radius='4px'
 					margin='0px 0px 20px 0px'
 					onClick={outputValues}
+					type='button'
 				>
 					<Text fontFamily='Intro-Regular' fontSize='16px' color='#FFF'>
 						Применить

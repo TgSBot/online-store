@@ -8,8 +8,13 @@ interface ISort {
 	female: boolean;
 	sizeShoes: number | undefined;
 	defaultVelues: boolean;
-	sorted: false;
+	page: PagePost;
 }
+
+type PagePost = {
+	start: number;
+	end: number;
+};
 
 const initialState: ISort = {
 	minPrice: 0,
@@ -19,7 +24,10 @@ const initialState: ISort = {
 	female: false,
 	sizeShoes: undefined,
 	defaultVelues: false,
-	sorted: false,
+	page: {
+		start: 9,
+		end: 18,
+	},
 };
 
 export const sortSliceShoes = createSlice({
@@ -54,12 +62,10 @@ export const sortSliceShoes = createSlice({
 		changeStateDefault(state) {
 			state.female = false;
 			state.male = false;
-			state.maxPrice = 10000;
+			state.maxPrice = state.stateMaxPrice;
 			state.minPrice = 0;
 			state.sizeShoes = undefined;
-			state.stateMaxPrice = 10000;
 			state.defaultVelues = true;
-			state.sorted = false;
 		},
 		changeDefaultVelues(state, action) {
 			state.defaultVelues = action.payload;
@@ -67,6 +73,14 @@ export const sortSliceShoes = createSlice({
 		changePrice(state, action) {
 			state.maxPrice = Math.ceil(action.payload[1]);
 			state.stateMaxPrice = Math.ceil(action.payload[1]);
+		},
+		changePagePost(state) {
+			state.page.start += 9;
+			state.page.end += 9;
+		},
+		changeDefaultStatePagePost(state) {
+			state.page.start = 9;
+			state.page.end = 18;
 		},
 	},
 });

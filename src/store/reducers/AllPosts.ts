@@ -10,7 +10,7 @@ interface IPosts {
 	gender: string;
 	rating: number;
 	productAvailability: number;
-	size: number;
+	sizeShoes: number;
 	tags: string[];
 }
 
@@ -18,6 +18,9 @@ interface IAllPosts {
 	allPosts: [IPosts] | [];
 	selectedPosts: [IPosts] | [];
 	price: [];
+	filteredPosts: [IPosts] | [];
+	sorted: boolean;
+	defaultValue: boolean;
 	loading: boolean;
 	error: boolean;
 }
@@ -26,6 +29,9 @@ const initialState: IAllPosts = {
 	allPosts: [],
 	selectedPosts: [],
 	price: [],
+	filteredPosts: [],
+	sorted: false,
+	defaultValue: false,
 	loading: false,
 	error: false,
 };
@@ -45,6 +51,16 @@ export const sliceAllPosts = createSlice({
 		},
 		changeSelectedPosts(state, action) {
 			state.selectedPosts = action.payload;
+		},
+		changeStatusDefaultValue(state, action) {
+			state.defaultValue = action.payload;
+		},
+		changeFilteredPosts(state, action) {
+			state.filteredPosts = action.payload;
+			state.sorted = true;
+		},
+		changeStatusSortedPosts(state) {
+			state.sorted = false;
 		},
 	},
 });
