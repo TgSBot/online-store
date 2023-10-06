@@ -125,7 +125,8 @@ const LoadingPosts = () => {
 
 	// Для проверки на фильтрационный массив
 	const returnStatusPosts = () => {
-		if (filteredPosts.length > 0 && sorted) return filteredPosts.slice(0, 9);
+		if ((filteredPosts.length > 0 && sorted) || sorted)
+			return filteredPosts.slice(0, 9);
 		return selectedPosts;
 	};
 
