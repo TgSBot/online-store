@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import ReactSlider from 'react-slider';
 import { styled } from 'styled-components';
-import { useAppDispatch, useAppSelector } from '../../../hook/redux';
-import { sortSliceShoes } from '../../../store/reducers/SortPostsShoes';
+import { useAppDispatch, useAppSelector } from '../../../../hook/redux';
+import { sortSliceShoes } from '../../../../store/reducers/SortPostsShoes';
 
 type PropsTrackColor = {
 	thumb: number;

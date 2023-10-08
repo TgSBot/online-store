@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { styled } from 'styled-components';
-import { useAppDispatch, useAppSelector } from '../../../hook/redux';
-import Text from '../../../UI/Text/Text';
-import checkboxChecking from '../../../assets/svg/group.svg';
-import { StyledInput } from '../../../UI/Input/InputCheckbox';
-import { sortSliceShoes } from '../../../store/reducers/SortPostsShoes';
+import { useAppDispatch, useAppSelector } from '../../../../hook/redux';
+import Text from '../../../../UI/Text/Text';
+import checkboxChecking from '../../../../assets/svg/group.svg';
+import { StyledInput } from '../../../../UI/Input/InputCheckbox';
+import { sortSliceShoes } from '../../../../store/reducers/SortPostsShoes';
 
 const LabelStyled = styled.label``;
 

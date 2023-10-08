@@ -1,15 +1,17 @@
 import React, { FC, useState } from 'react';
 import { styled } from 'styled-components';
+import { IPosts } from '../../../store/reducers/AllPosts';
 import BlockText from '../../../UI/BlockText/BlockText';
 
 import Img from '../../../UI/IMG/Img';
 import Text from '../../../UI/Text/Text';
-import InteractivePanel from './InteractivePanel';
+import InteractivePanel from './Post/InteractivePanel';
 
 interface IPost {
 	img: any;
 	title: string;
 	price: number;
+	post: IPosts;
 }
 
 const Wrapper = styled.div`
@@ -36,7 +38,7 @@ const StyledImg = styled(Img)`
 	z-index: 0;
 `;
 
-const Post: FC<IPost> = ({ img, title, price }) => {
+const Post: FC<IPost> = ({ img, title, price, post }) => {
 	const [focus, setFocus] = useState(false);
 
 	const onMouseEnterFocus = (event: FocusEvent) => {
@@ -66,7 +68,7 @@ const Post: FC<IPost> = ({ img, title, price }) => {
 							src={img}
 							alt='Кроссовки'
 						/>
-						{focus === true ? <InteractivePanel /> : ''}
+						{focus === true ? <InteractivePanel post={post} /> : ''}
 					</BlockImg>
 					<BlockText
 						width='fit-content'

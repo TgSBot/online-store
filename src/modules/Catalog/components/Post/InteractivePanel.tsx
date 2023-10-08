@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { FC, SyntheticEvent } from 'react';
 import { styled } from 'styled-components';
-import BlockText from '../../../UI/BlockText/BlockText';
-import eyesButton from '../../../assets/svg/iconly-light-showeyes.svg';
-import basketButton from '../../../assets/svg/Vector_basket.svg';
-import Img from '../../../UI/IMG/Img';
+import BlockText from '../../../../UI/BlockText/BlockText';
+import eyesButton from '../../../../assets/svg/iconly-light-showeyes.svg';
+import basketButton from '../../../../assets/svg/Vector_basket.svg';
+import Img from '../../../../UI/IMG/Img';
+import { IPosts } from '../../../../store/reducers/AllPosts';
+import { useAppDispatch } from '../../../../hook/redux';
+import { slicePopUp } from '../../../../store/reducers/PopUp';
 
 type ButtonProps = {
 	margin?: string;
+	value?: object;
 };
+
+interface IInteractivePanel {
+	post: IPosts;
+}
 
 const InteractiveMenu = styled(BlockText)`
 	width: 280px;
@@ -31,7 +39,16 @@ const StyledImg = styled(Img)`
 	z-index: 0;
 `;
 
-const InteractivePanel = () => {
+const InteractivePanel: FC<IInteractivePanel> = ({ post }) => {
+	// Redux
+	const { changeActivePopUp, changePost } = slicePopUp.actions;
+	const dispatch = useAppDispatch();
+
+	const ButtonClick = (event: SyntheticEvent<HTMLButtonElement>): void => {
+		event.preventDefault();
+		dispatch(changeActivePopUp(true));
+		dispatch(changePost(post));
+	};
 	return (
 		<InteractiveMenu
 			width='280px'
@@ -46,7 +63,11 @@ const InteractivePanel = () => {
 				height='fit-content'
 				justify_content='space-between'
 			>
-				<PostButton margin='0px 40px 0px 0px'>
+				<PostButton
+					margin='0px 40px 0px 0px'
+					onClick={ButtonClick}
+					value={post}
+				>
 					<StyledImg
 						src={eyesButton}
 						alt=''

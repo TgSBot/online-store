@@ -13,6 +13,7 @@ type ButtonStyle = {
 	disabled?: any;
 	onClick?: any;
 	value?: number;
+	border?: string;
 };
 
 const ButtonStyled = styled.button<ButtonStyle>`
@@ -24,6 +25,7 @@ const ButtonStyled = styled.button<ButtonStyle>`
 	height: ${(props) => props.height};
 	border-radius: ${(props) => props.border_radius || 0};
 	margin: ${(props) => props.margin || 0};
+	border: ${(props) => props.border};
 `;
 
 const Button: FC<IButton> = ({ children, type, onClick, value, ...props }) => {

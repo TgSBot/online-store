@@ -16,6 +16,8 @@ interface IText extends PropsWithChildren {
 	text_transform?: string;
 	z_index?: string;
 	onClick?: any;
+	opacity?: string;
+	vertical_align?: string;
 }
 
 const StyledText = styled.span<IText>`
@@ -31,6 +33,8 @@ const StyledText = styled.span<IText>`
 	letter-spacing: ${(props) => props.letter_spacing};
 	text-transform: ${(props) => props.text_transform};
 	z-index: ${(props) => props.z_index || '0'};
+	opacity: ${(props) => props.opacity};
+	vertical-align: ${(props) => props.vertical_align};
 `;
 
 const Text: FC<IText> = ({ children, onClick, ...props }) => {

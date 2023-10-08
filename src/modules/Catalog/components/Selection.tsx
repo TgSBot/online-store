@@ -6,8 +6,8 @@ import { sortSliceShoes } from '../../../store/reducers/SortPostsShoes';
 import BlockText from '../../../UI/BlockText/BlockText';
 import Button from '../../../UI/Button/Button';
 import Text from '../../../UI/Text/Text';
-import BlockPrice from './BlockPrice';
-import GenderSelection from './GenderSelection';
+import BlockPrice from './Selection/BlockPrice';
+import GenderSelection from './Selection/GenderSelection';
 
 interface ISelection {
 	margin?: string;

@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from 'react';
 import { styled } from 'styled-components';
-import { useAppSelector } from '../../../hook/redux';
-import Text from '../../../UI/Text/Text';
+import { useAppSelector } from '../../../../hook/redux';
+import Text from '../../../../UI/Text/Text';
 import InputRange from './InputRange';
 
 interface PropsPrice {

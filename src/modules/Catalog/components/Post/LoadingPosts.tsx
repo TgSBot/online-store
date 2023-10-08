@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
-import BlockText from '../../../UI/BlockText/BlockText';
-import shoes from '../../../assets/img/image.jpg';
-import Button from '../../../UI/Button/Button';
-import Text from '../../../UI/Text/Text';
-import { getPosts } from '../../../api/Posts';
-import { useAppDispatch, useAppSelector } from '../../../hook/redux';
-import { sortSliceShoes } from '../../../store/reducers/SortPostsShoes';
-import { sliceAllPosts } from '../../../store/reducers/AllPosts';
-import Post from './Post';
+import BlockText from '../../../../UI/BlockText/BlockText';
+import shoes from '../../../../assets/img/image.jpg';
+import Button from '../../../../UI/Button/Button';
+import Text from '../../../../UI/Text/Text';
+import { getPosts } from '../../../../api/Posts';
+import { useAppDispatch, useAppSelector } from '../../../../hook/redux';
+import { sortSliceShoes } from '../../../../store/reducers/SortPostsShoes';
+import { sliceAllPosts } from '../../../../store/reducers/AllPosts';
+import Post from '../Post';
 import {
 	randomProductAvailability,
 	randomGenderPost,
 	randomRating,
 	randomSizeShoes,
-} from '../../../helpers/RandomStatePosts';
+} from '../../../../helpers/RandomStatePosts';
 
 const Posts = styled(BlockText)`
 	flex-direction: row;
@@ -146,8 +146,9 @@ const LoadingPosts = () => {
 						<Post
 							key={post.id}
 							title={post.name}
-							price={Math.ceil(Number(post.price))}
+							price={Math.ceil(post.net_price)}
 							img={shoes}
+							post={post}
 						/>
 					);
 				})
