@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Text from '../../UI/Text/Text';
 import Button from '../../UI/Button/Button';
 import BlockText from '../../UI/BlockText/BlockText';
+import BasketPopUp from './components/PopUp/BasketPopUp';
 
 const Wrapper = styled.div`
 	width: 100%;
@@ -24,8 +25,8 @@ const Row = styled.div`
 
 const TransparentInscription = styled.div`
 	position: absolute;
-	top: 217px;
-	right: 260px;
+	top: 218px;
+	right: 445px;
 	z-index: 0;
 	width: 980px;
 	height: 200px;

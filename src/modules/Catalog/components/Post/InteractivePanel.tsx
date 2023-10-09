@@ -7,6 +7,7 @@ import Img from '../../../../UI/IMG/Img';
 import { IPosts } from '../../../../store/reducers/AllPosts';
 import { useAppDispatch } from '../../../../hook/redux';
 import { slicePopUp } from '../../../../store/reducers/PopUp';
+import { sliceBasketPopUp } from '../../../../store/reducers/BasketPopUp';
 
 type ButtonProps = {
 	margin?: string;
@@ -41,14 +42,23 @@ const StyledImg = styled(Img)`
 
 const InteractivePanel: FC<IInteractivePanel> = ({ post }) => {
 	// Redux
-	const { changeActivePopUp, changePost } = slicePopUp.actions;
+	const { changePost, changeActivePopUp } = slicePopUp.actions;
+	const { changePostBasket } = sliceBasketPopUp.actions;
 	const dispatch = useAppDispatch();
 
-	const ButtonClick = (event: SyntheticEvent<HTMLButtonElement>): void => {
+	const ButtonClickPopUp = (event: SyntheticEvent<HTMLButtonElement>): void => {
 		event.preventDefault();
 		dispatch(changeActivePopUp(true));
 		dispatch(changePost(post));
 	};
+
+	const ButtonClickBasketPopUp = (
+		event: SyntheticEvent<HTMLButtonElement>
+	): void => {
+		event.preventDefault();
+		dispatch(changePostBasket(post));
+	};
+
 	return (
 		<InteractiveMenu
 			width='280px'
@@ -63,11 +73,7 @@ const InteractivePanel: FC<IInteractivePanel> = ({ post }) => {
 				height='fit-content'
 				justify_content='space-between'
 			>
-				<PostButton
-					margin='0px 40px 0px 0px'
-					onClick={ButtonClick}
-					value={post}
-				>
+				<PostButton margin='0px 40px 0px 0px' onClick={ButtonClickPopUp}>
 					<StyledImg
 						src={eyesButton}
 						alt=''
@@ -75,7 +81,7 @@ const InteractivePanel: FC<IInteractivePanel> = ({ post }) => {
 						height='18.255px'
 					/>
 				</PostButton>
-				<PostButton>
+				<PostButton onClick={ButtonClickBasketPopUp}>
 					<StyledImg
 						src={basketButton}
 						alt=''

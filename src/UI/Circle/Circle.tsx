@@ -15,6 +15,7 @@ interface ICircle extends PropsWithChildren {
 	justify_content?: string;
 	border_radius?: string;
 	z_index?: string;
+	align_items?: string;
 }
 
 const CircleStyled = styled.div<ICircle>`
@@ -36,6 +37,7 @@ const CircleStyled = styled.div<ICircle>`
 	left: ${(props) => props.left || '0px'};
 	justify-content: ${(props) => props.justify_content || 'normal'};
 	z-index: ${(props) => props.z_index || '0'};
+	align-items: ${(props) => props.align_items};
 `;
 
 const Circle: FC<ICircle> = ({ children, ...props }) => {

@@ -14,12 +14,14 @@ type ButtonStyle = {
 	onClick?: any;
 	value?: number;
 	border?: string;
+	justify_content?: string;
+	align_items?: string;
 };
 
 const ButtonStyled = styled.button<ButtonStyle>`
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	justify-content: ${(props) => props.justify_content || 'center'};
+	align-items: ${(props) => props.align_items || 'center'};
 	background-color: ${(props) => props.ground_color};
 	width: ${(props) => props.width};
 	height: ${(props) => props.height};

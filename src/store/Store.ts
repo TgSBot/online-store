@@ -2,11 +2,15 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import sortPostsShoes from './reducers/SortPostsShoes';
 import allPosts from './reducers/AllPosts';
 import PopUp from './reducers/PopUp';
+import BasketPopUp from './reducers/BasketPopUp';
+import OrderRegistration from './reducers/OrderRegistration';
 
 const rootReducer = combineReducers({
+	BasketPopUp,
 	sortPostsShoes,
 	allPosts,
 	PopUp,
+	OrderRegistration,
 });
 
 export const setupStore = () => {

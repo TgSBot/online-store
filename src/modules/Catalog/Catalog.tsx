@@ -4,8 +4,6 @@ import Text from '../../UI/Text/Text';
 import Selection from './components/Selection';
 import BlockText from '../../UI/BlockText/BlockText';
 import LoadingPosts from './components/Post/LoadingPosts';
-import PopUpPost from './components/PopUpPost';
-import { useAppSelector } from '../../hook/redux';
 
 const Wrapper = styled.div`
 	width: 100%;
@@ -22,10 +20,8 @@ const Row = styled.div`
 `;
 
 const Catalog: FC = () => {
-	const { active } = useAppSelector((state) => state.PopUp);
 	return (
 		<Wrapper>
-			<PopUpPost display={active ? true : false} />
 			<Row>
 				<Text
 					fontFamily='Intro-Bold'
