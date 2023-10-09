@@ -5,12 +5,14 @@ interface InitialState {
 	active: boolean;
 	postBasket: [IPosts] | [];
 	countPurchases: number;
+	sumPricePosts: number;
 }
 
 const initialState: InitialState = {
 	active: false,
 	postBasket: [],
 	countPurchases: 0,
+	sumPricePosts: 0,
 };
 
 export const sliceBasketPopUp = createSlice({
@@ -27,6 +29,9 @@ export const sliceBasketPopUp = createSlice({
 		deletePost(state, action) {
 			state.postBasket = action.payload;
 			state.countPurchases -= 1;
+		},
+		changeSumPricePosts(state, action) {
+			state.sumPricePosts = action.payload;
 		},
 	},
 });

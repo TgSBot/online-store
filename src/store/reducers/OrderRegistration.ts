@@ -17,7 +17,7 @@ const initialState: InitialState = {
 	email: undefined,
 };
 
-const sliceOrderRegistration = createSlice({
+export const sliceOrderRegistration = createSlice({
 	name: 'orderRegistration',
 	initialState,
 	reducers: {

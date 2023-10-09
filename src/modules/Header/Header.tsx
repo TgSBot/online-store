@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import Text from '../../UI/Text/Text';
 import Button from '../../UI/Button/Button';
 import BlockText from '../../UI/BlockText/BlockText';
-import BasketPopUp from './components/PopUp/BasketPopUp';
 
 const Wrapper = styled.div`
 	width: 100%;

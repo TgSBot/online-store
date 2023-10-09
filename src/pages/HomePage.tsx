@@ -3,6 +3,7 @@ import { useAppSelector } from '../hook/redux';
 import Catalog from '../modules/Catalog/Catalog';
 import PopUpPost from '../modules/Catalog/components/PopUpPost';
 import BasketPopUp from '../modules/Header/components/PopUp/BasketPopUp';
+import OrderRegistration from '../modules/Header/components/PopUp/OrderRegistration';
 import Header from '../modules/Header/Header';
 
 const HomePage = () => {
@@ -12,6 +13,7 @@ const HomePage = () => {
 		<>
 			<PopUpPost display={active ? true : false} />
 			<BasketPopUp />
+			<OrderRegistration />
 			<Header />
 			<Catalog />
 		</>

@@ -1,7 +1,8 @@
-import React, { SyntheticEvent } from 'react';
+import React, { SyntheticEvent, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../../hook/redux';
 import { sliceBasketPopUp } from '../../../../store/reducers/BasketPopUp';
+import { sliceOrderRegistration } from '../../../../store/reducers/OrderRegistration';
 import BlockText from '../../../../UI/BlockText/BlockText';
 import Button from '../../../../UI/Button/Button';
 import Text from '../../../../UI/Text/Text';
@@ -50,10 +51,11 @@ const BlockAllSum = styled.div`
 `;
 
 const BasketPopUp = () => {
-	const { active, postBasket, countPurchases } = useAppSelector(
+	const { active, postBasket, countPurchases, sumPricePosts } = useAppSelector(
 		(state) => state.BasketPopUp
 	);
-	const { changeStatusActive } = sliceBasketPopUp.actions;
+	const { changeStatusActive, changeSumPricePosts } = sliceBasketPopUp.actions;
+	const { changeStatus } = sliceOrderRegistration.actions;
 	const dispatch = useAppDispatch();
 
 	const closePopUp = (event: SyntheticEvent): void => {
@@ -61,16 +63,25 @@ const BasketPopUp = () => {
 		dispatch(changeStatusActive(false));
 	};
 
-	const sumPostBasket = () => {
-		const sum: number[] = [];
-		postBasket.map((post) => sum.push(post.net_price));
-		const allPriceToPurchase = sum.reduce(
-			(partialSum: number, secondSum: number) =>
-				Math.floor(partialSum) + Math.floor(secondSum),
-			0
-		);
-		return allPriceToPurchase;
+	const openOrderRegistration = (event: SyntheticEvent) => {
+		event.preventDefault();
+		dispatch(changeStatusActive(false));
+		dispatch(changeStatus(true));
 	};
+
+	useEffect(() => {
+		const sumPostBasket = () => {
+			const sum: number[] = [];
+			postBasket.map((post) => sum.push(post.net_price));
+			const allPriceToPurchase = sum.reduce(
+				(partialSum: number, secondSum: number) =>
+					Math.floor(partialSum) + Math.floor(secondSum),
+				0
+			);
+			dispatch(changeSumPricePosts(allPriceToPurchase));
+		};
+		sumPostBasket();
+	}, [changeSumPricePosts, dispatch, postBasket]);
 
 	return (
 		<Wrapper display={active ? 'flex' : 'none'} onClick={closePopUp}>
@@ -116,7 +127,7 @@ const BasketPopUp = () => {
 								fontWeight='700'
 								color='#4D4D4D'
 							>
-								{sumPostBasket()}
+								{sumPricePosts}
 							</Text>
 						</BlockText>
 						<Button
@@ -125,6 +136,7 @@ const BasketPopUp = () => {
 							ground_color='#F14F4F'
 							border_radius='4px'
 							margin='0px 20px 0px 0px'
+							onClick={openOrderRegistration}
 						>
 							<Text fontFamily='Intro-Regular' fontSize='16px'>
 								Перейти к оформлению
