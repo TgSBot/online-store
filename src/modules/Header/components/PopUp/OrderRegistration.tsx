@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { styled } from 'styled-components';
-import { useAppSelector } from '../../../../hook/redux';
+import { useAppDispatch, useAppSelector } from '../../../../hook/redux';
 import BlockText from '../../../../UI/BlockText/BlockText';
+import { sliceOrderRegistration } from '../../../../store/reducers/OrderRegistration';
+import CheckOrderRegistration from './CheckOrderRegistration';
+import Input from '../../../../UI/Input/Input';
 import Button from '../../../../UI/Button/Button';
 import Text from '../../../../UI/Text/Text';
 
@@ -18,6 +21,7 @@ const Wrapper = styled.div<PropsWrapper>`
 	z-index: 3;
 	justify-content: center;
 	align-items: center;
+	overflow: auto;
 `;
 
 const Row = styled.div`
@@ -27,116 +31,75 @@ const Row = styled.div`
 	display: flex;
 `;
 
-const ControlCheck = styled.div`
-	width: 100%;
+const Form = styled.form`
+	width: fit-content;
 	height: fit-content;
-	border: 1px solid #d9d9d9;
-	border-radius: 4px;
-	padding: 30px 30px 50px 30px;
+	margin: 40px 0px 0px 0px;
 	display: flex;
 	flex-direction: column;
 `;
 
-const CheckMark = styled.div`
-	display: inline-block;
-	width: 7px;
-	height: 7px;
-	position: relative;
-	top: 10px;
-	&::before {
-		content: '';
-		height: 1px;
-		width: 7px;
-		position: absolute;
-		background-color: #444b58;
-		transform: rotate(45deg);
-		border-radius: 2px;
-	}
-	&::after {
-		content: '';
-		height: 1px;
-		width: 7px;
-		position: absolute;
-		background-color: #444b58;
-		transform: rotate(-45deg);
-		left: 8px;
-		border-radius: 2px;
-	}
-`;
-
 const OrderRegistration = () => {
-	const { postBasket, sumPricePosts } = useAppSelector(
-		(state) => state.BasketPopUp
-	);
+	// Redux
+
 	const { status } = useAppSelector((state) => state.OrderRegistration);
+	const { changeStatus } = sliceOrderRegistration.actions;
+	const dispatch = useAppDispatch();
+
+	const closePopUp = (event: SyntheticEvent) => {
+		event.preventDefault();
+		dispatch(changeStatus(false));
+	};
 
 	return (
-		<Wrapper display={status ? 'flex' : 'none'}>
-			<Row>
+		<Wrapper display={status ? 'flex' : 'none'} onClick={closePopUp}>
+			<Row onClick={(event: SyntheticEvent) => event.stopPropagation()}>
 				<BlockText
 					width='fit-content'
 					height='fit-content'
 					margin='40px'
 					flex_direction='column'
 				>
-					<BlockText
-						width='fit-content'
-						height='fit-content'
-						flex_direction='row'
-						margin='0px 0px 40px 0px'
-					>
-						<Text
-							fontFamily='Intro-Bold'
-							fontSize='20px'
-							line_height='20px'
-							fontWeight='700'
-							color='#444B58'
-							margin='0px 210px 0px 0px'
+					<CheckOrderRegistration />
+					<Form>
+						<Input
+							type='text'
+							width='500px'
+							height='60px'
+							background_color='#F6F6F6'
+							placeholder='Ваше имя'
+							border_radius='4px'
+							margin='0px 0px 10px 0px'
+						/>
+						<Input
+							type='text'
+							width='500px'
+							height='60px'
+							background_color='#F6F6F6'
+							placeholder='Номер телефона'
+							border_radius='4px'
+							margin='0px 0px 10px 0px'
+						/>
+						<Input
+							type='text'
+							width='500px'
+							height='60px'
+							background_color='#F6F6F6'
+							placeholder='E-mail'
+							border_radius='4px'
+							margin='0px 0px 51px 0px'
+						/>
+						<Button
+							width='221px'
+							height='60px'
+							ground_color='#F14F4F'
+							border_radius='4px'
 						>
-							Оформление заказа
-						</Text>
-						<Text fontFamily='Intro-Book' fontSize='14px' color='#B2B5BB'>
-							Заказ 3456 67
-						</Text>
-					</BlockText>
-					<ControlCheck>
-						<Text
-							fontFamily='Intro-Book'
-							fontSize='16px'
-							color='#B2B5BB'
-							margin='0px 0px 20px 0px'
-						>
-							Товаров в заказе:{' '}
-							<Text
-								fontFamily='Intro-Bold'
-								color='#444B58'
-								fontWeight='700'
-								fontSize='16px'
-							>{`${postBasket.length} шт`}</Text>
-						</Text>
-						<Text
-							fontFamily='Intro-Book'
-							fontSize='16px'
-							color='#B2B5BB'
-							margin='0px 0px 20px 0px'
-						>
-							Общая сумма заказ:{' '}
-							<Text
-								fontFamily='Intro-Bold'
-								color='#444B58'
-								fontWeight='700'
-								fontSize='16px'
-							>{`${sumPricePosts} ₽`}</Text>
-						</Text>
-						<Button width='fit-content' height='fit-content'>
-							<BlockText width='fit-content' height='fit-content'>
-								<Text fontFamily='Intro-Book' fontSize='16px' color='#444B58'>
-									Состав заказа
-								</Text>
-								<CheckMark />
-							</BlockText>
+							<Text fontFamily='Intro-Regular' fontSize='16px' color='#FFF'>
+								Оформить заказ
+							</Text>
 						</Button>
-					</ControlCheck>
+					</Form>
 				</BlockText>
 			</Row>
 		</Wrapper>

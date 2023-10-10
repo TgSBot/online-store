@@ -16,6 +16,7 @@ type InputStyle = {
 	height: string;
 	border_radius?: string;
 	border?: string;
+	margin?: string;
 };
 
 const InputStyled = styled.input<InputStyle>`
@@ -24,6 +25,7 @@ const InputStyled = styled.input<InputStyle>`
 	height: ${(props) => props.height};
 	border-radius: ${(props) => props.border_radius};
 	border: ${(props) => props.border || 'none'};
+	margin: ${(props) => props.margin};
 	padding: 0px 0px 0px 20px;
 	&::placeholder {
 		font-size: 16px;

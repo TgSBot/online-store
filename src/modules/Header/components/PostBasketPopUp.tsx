@@ -39,6 +39,7 @@ const Post = styled(BlockText)`
 
 const PostBasketPopUp: FC<IPostBasketPopUp> = ({ post }) => {
 	const { postBasket } = useAppSelector((state) => state.BasketPopUp);
+	const { status } = useAppSelector((state) => state.OrderRegistration);
 	const { deletePost } = sliceBasketPopUp.actions;
 	const dispatch = useAppDispatch();
 
@@ -47,8 +48,7 @@ const PostBasketPopUp: FC<IPostBasketPopUp> = ({ post }) => {
 		dispatch(deletePost(postBasket.filter((posts) => posts.id !== post.id)));
 	};
 
-	console.log(postBasket);
-
+	console.log(status);
 	return (
 		<Wrapper>
 			<Row>
@@ -90,12 +90,18 @@ const PostBasketPopUp: FC<IPostBasketPopUp> = ({ post }) => {
 						</Text>
 					</BlockText>
 					<ButtonStyle onClick={deletePosts}>
-						<Img
-							src={basketDelete}
-							alt=''
-							width='max-content'
-							height='max-content'
-						/>
+						{status ? (
+							<Text fontFamily='Intro-Book' fontSize='14px' color='#B2B5BB'>
+								Удалить
+							</Text>
+						) : (
+							<Img
+								src={basketDelete}
+								alt=''
+								width='max-content'
+								height='max-content'
+							/>
+						)}
 					</ButtonStyle>
 				</Post>
 			</Row>
