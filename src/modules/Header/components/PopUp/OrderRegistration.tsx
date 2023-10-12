@@ -1,4 +1,4 @@
-import React, { FormEvent, SyntheticEvent, useEffect, useState } from 'react';
+import React, { FormEvent, SyntheticEvent, useState } from 'react';
 import { styled } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../../hook/redux';
 import BlockText from '../../../../UI/BlockText/BlockText';
@@ -7,7 +7,6 @@ import CheckOrderRegistration from './CheckOrderRegistration';
 import Input from '../../../../UI/Input/Input';
 import Button from '../../../../UI/Button/Button';
 import Text from '../../../../UI/Text/Text';
-import { event } from 'yandex-maps';
 
 type PropsWrapper = {
 	display: string;
@@ -44,7 +43,7 @@ const OrderRegistration = () => {
 	const [name, setName] = useState('');
 	const [numberPhone, setNumberPhone] = useState('');
 	const [email, setEmail] = useState('');
-	const [error, setError] = useState(false);
+	// const [error, setError] = useState(false);
 
 	// Redux
 	const { status } = useAppSelector((state) => state.OrderRegistration);
@@ -56,25 +55,25 @@ const OrderRegistration = () => {
 		dispatch(changeStatus(false));
 	};
 
-	const validationName = () => {
-		if (name.length < 3) {
-			setError(true);
-			return false;
-		}
-		return true;
-	};
+	// const validationName = () => {
+	// 	if (name.length < 3) {
+	// 		setError(true);
+	// 		return false;
+	// 	}
+	// 	return true;
+	// };
 
-	const validationPhoneNumber = () => {
-		if (numberPhone.length < 11) {
-			setError(true);
-			return false;
-		}
-		return true;
-	};
+	// const validationPhoneNumber = () => {
+	// 	if (numberPhone.length < 11) {
+	// 		setError(true);
+	// 		return false;
+	// 	}
+	// 	return true;
+	// };
 
-	const validationEmail = () => {
-		return /\S+@\S+\.\S+/.test(email);
-	};
+	// const validationEmail = () => {
+	// 	return /\S+@\S+\.\S+/.test(email);
+	// };
 
 	return (
 		<Wrapper display={status ? 'flex' : 'none'} onClick={closePopUp}>
@@ -100,13 +99,6 @@ const OrderRegistration = () => {
 							}
 							value={name}
 						/>
-						{error ? (
-							<Text fontFamily='Intro-Book' fontSize='16' color='#F14F4F'>
-								Имя должно содержать не менее 3 букв
-							</Text>
-						) : (
-							''
-						)}
 						<Input
 							type='text'
 							width='500px'
@@ -138,7 +130,7 @@ const OrderRegistration = () => {
 							height='60px'
 							ground_color='#F14F4F'
 							border_radius='4px'
-							disabled={error ? true : false}
+							// disabled={error ? true : false}
 						>
 							<Text fontFamily='Intro-Regular' fontSize='16px' color='#FFF'>
 								Оформить заказ
