@@ -4,6 +4,7 @@ import allPosts from './reducers/AllPosts';
 import PopUp from './reducers/PopUp';
 import BasketPopUp from './reducers/BasketPopUp';
 import OrderRegistration from './reducers/OrderRegistration';
+import IndividualSelectionShoes from './reducers/IndividualSelectionShoes';
 
 const rootReducer = combineReducers({
 	BasketPopUp,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
 	allPosts,
 	PopUp,
 	OrderRegistration,
+	IndividualSelectionShoes,
 });
 
 export const setupStore = () => {
