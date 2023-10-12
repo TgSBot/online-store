@@ -28,6 +28,9 @@ const ButtonStyled = styled.button<ButtonStyle>`
 	border-radius: ${(props) => props.border_radius || 0};
 	margin: ${(props) => props.margin || 0};
 	border: ${(props) => props.border};
+	&:disable {
+		opacity: 0.5;
+	}
 `;
 
 const Button: FC<IButton> = ({ children, type, onClick, value, ...props }) => {

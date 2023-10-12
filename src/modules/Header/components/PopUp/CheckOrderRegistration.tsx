@@ -15,7 +15,7 @@ const ControlCheck = styled.div`
 	height: fit-content;
 	border: 1px solid #d9d9d9;
 	border-radius: 4px;
-	padding: 30px 30px 50px 30px;
+	padding: 30px 30px 20px 30px;
 	display: flex;
 	flex-direction: column;
 `;
@@ -66,6 +66,7 @@ const CheckMark = styled.div<PropsCheckMarks>`
 `;
 
 const BlockOrderPost = styled(BlockText)`
+	max-height: 233px;
 	overflow-y: auto;
 `;
 
@@ -142,7 +143,7 @@ const CheckOrderRegistration = () => {
 				</Button>
 				<BlockOrderPost
 					width='fit-content'
-					height='236px'
+					height='fit-content'
 					flex_direction='column'
 				>
 					{postBasket.map((post) => {

@@ -48,7 +48,6 @@ const PostBasketPopUp: FC<IPostBasketPopUp> = ({ post }) => {
 		dispatch(deletePost(postBasket.filter((posts) => posts.id !== post.id)));
 	};
 
-	console.log(status);
 	return (
 		<Wrapper>
 			<Row>
