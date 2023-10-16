@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import { useAppSelector } from '../../../../hook/redux';
 import Text from '../../../../UI/Text/Text';
 import InputRange from './InputRange';
+import { BeautifulNumbers } from '../../../../helpers/BeautifulNumbers';
 
 interface PropsPrice {
 	border_width: string;
@@ -48,7 +49,11 @@ const BlockPrice: FC = () => {
 		return (
 			<Price border_width='1px 1px 1px 0px' border_radius='0px 4px 4px 0px'>
 				<Text fontFamily='Intro-Book' fontSize='16px' color='#444B58'>
-					{error === true ? '0' : loading === true ? '0' : maxPrice}
+					{error === true
+						? '0'
+						: loading === true
+						? '0'
+						: BeautifulNumbers(maxPrice)}
 				</Text>
 			</Price>
 		);

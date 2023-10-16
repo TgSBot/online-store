@@ -6,6 +6,7 @@ import BlockText from '../../../UI/BlockText/BlockText';
 import Img from '../../../UI/IMG/Img';
 import Text from '../../../UI/Text/Text';
 import InteractivePanel from './Post/InteractivePanel';
+import { BeautifulNumbers } from '../../../helpers/BeautifulNumbers';
 
 interface IPost {
 	img: any;
@@ -89,7 +90,7 @@ const Post: FC<IPost> = ({ img, title, price, post }) => {
 							color='#444B58'
 							margin='10px 0px 0px 0px'
 						>
-							{`${price} р`}
+							{`${BeautifulNumbers(price)} р`}
 						</Text>
 					</BlockText>
 				</Posts>
