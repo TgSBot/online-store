@@ -1,19 +1,28 @@
-import React, { FC } from 'react';
+import React, { FC, SyntheticEvent, useState } from 'react';
 import { styled } from 'styled-components';
-import checkboxChecking from '../../../assets/svg/group.svg';
+import checkboxChecking from '../../assets/svg/group.svg';
 import Text from '../Text/Text';
 
 interface IInputCheckbox {
 	text?: string;
-	onChangeInput?: () => {};
+	onChangeInput?: (event: SyntheticEvent) => void;
 	checked?: boolean;
+	margin?: string;
+	type: string;
+	onClick?: () => void;
 }
+
+type PropsLabelStyled = {
+	margin?: string;
+};
 
 export const StyledInput = styled.input`
 	display: none;
 `;
 
-const LabelStyled = styled.label``;
+const LabelStyled = styled.label<PropsLabelStyled>`
+	margin: ${(props) => props.margin || '0px'};
+`;
 
 const Fake = styled.div`
 	width: 24px;
@@ -45,13 +54,18 @@ const InputCheckbox: FC<IInputCheckbox> = ({
 	text,
 	onChangeInput,
 	checked,
+	margin,
+	type,
+	onClick,
 }) => {
+	const [selected, setSelected] = useState(false);
+
 	return (
-		<LabelStyled>
+		<LabelStyled margin={margin}>
 			<StyledInput
-				type={'checkbox'}
-				checked={checked}
-				onChange={onChangeInput}
+				type={type}
+				checked={selected}
+				onChange={() => (selected ? setSelected(false) : setSelected(true))}
 				name='shoes'
 			/>
 			<Fake />

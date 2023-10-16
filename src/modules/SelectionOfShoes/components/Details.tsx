@@ -1,11 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import Text from '../../../UI/Text/Text';
-import InputCheckbox from '../../../UI/Input/InputCheckbox';
 import BlockText from '../../../UI/BlockText/BlockText';
 import { useAppSelector } from '../../../hook/redux';
-import Img from '../../../UI/IMG/Img';
-import shoes from '../../../assets/img/rectangle-45-shoes.jpg';
 import Button from '../../../UI/Button/Button';
 import Br from '../../../UI/Br/Br';
 
@@ -23,19 +20,29 @@ const Row = styled.div`
 	flex-direction: column;
 `;
 
-const StyledForm = styled.form`
-	width: fit-content;
-	height: fit-content;
-	display: flex;
-	flex-direction: row;
-	margin: 0px 0px 22px 0px;
+const StyledInput = styled.textarea`
+	max-width: 465px;
+	min-height: 246px;
+	border-radius: 4px;
+	background-color: #fff;
+	padding: 20px;
+	resize: none;
+	color: #dbbba9;
+	font-family: Intro-Book;
+	font-size: 16px;
+	margin: 0px 0px 122px 0px;
+	&::placeholder {
+		color: #dbbba9;
+		font-family: Intro-Book;
+		font-size: 16px;
+	}
+	&:focus {
+		border: none;
+	}
 `;
 
-const SelectionSizeShoes = () => {
+const Details = () => {
 	const { page } = useAppSelector((state) => state.IndividualSelectionShoes);
-
-	const arraySizeShoes = ['менее 36', '36-38', '39-41', '42-44', '45 и более'];
-
 	return (
 		<Wrapper>
 			<Row>
@@ -57,34 +64,16 @@ const SelectionSizeShoes = () => {
 					Ответьте на три вопроса и мы вышлем каталог с самыми подходящими для
 					вас моделями
 				</Text>
-				<Br width='100%' margin='0px 0px 20px 0px' />
+				<Br margin='0px 0px 20px 0px' />
 				<Text
 					fontFamily='Intro-Book'
 					fontSize='24px'
 					color='#444B58'
-					margin='0px 0px 40px 0px'
-				>
-					Какой размер вам подойдёт?
-				</Text>
-				<StyledForm>
-					{arraySizeShoes.map((size) => {
-						return (
-							<InputCheckbox
-								type='checkbox'
-								key={size}
-								text={size}
-								margin='0px 70px 0px 0px'
-							/>
-						);
-					})}
-				</StyledForm>
-				<Img
-					src={shoes}
-					alt={'обувь'}
-					width='100%'
-					height='100%'
 					margin='0px 0px 20px 0px'
-				/>
+				>
+					Уточните какие-либо моменты
+				</Text>
+				<StyledInput placeholder='Введите сообщение' />
 				<Br margin='0px 0px 20px 0px' />
 				<BlockText
 					width='100%'
@@ -111,4 +100,4 @@ const SelectionSizeShoes = () => {
 	);
 };
 
-export default SelectionSizeShoes;
+export default Details;

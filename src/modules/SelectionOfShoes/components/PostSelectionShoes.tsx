@@ -2,11 +2,9 @@ import React, { ChangeEvent, FC, useState } from 'react';
 import styled from 'styled-components';
 import Img from '../../../UI/IMG/Img';
 import shoes from '../../../assets/img/selection-shoes.jpg';
-import checkboxChecking from '../../../assets/svg/group.svg';
-import InputCheckbox, { StyledInput } from '../../../UI/Input/InputCheckbox';
-import Text from '../../../UI/Text/Text';
 import { sliceIndividualShoes } from '../../../store/reducers/IndividualSelectionShoes';
 import { useAppDispatch, useAppSelector } from '../../../hook/redux';
+import InputCheckbox from '../../../UI/Input/InputCheckbox';
 
 interface PropsPostSelectionShoes {
 	typeShoes?: string;
@@ -70,7 +68,7 @@ const PostSelectionShoes: FC<PropsPostSelectionShoes> = ({ typeShoes }) => {
 				height='120px'
 				margin='0px 0px 10px 0px'
 			/>
-			<InputCheckbox checked={type} />
+			<InputCheckbox checked={type} type='checkbox' />
 		</Wrapper>
 	);
 };

@@ -5,11 +5,7 @@ import BlockText from '../../../UI/BlockText/BlockText';
 import PostSelectionShoes from './PostSelectionShoes';
 import { useAppSelector } from '../../../hook/redux';
 import Button from '../../../UI/Button/Button';
-
-type PropsStyledBr = {
-	width?: string;
-	margin?: string;
-};
+import Br from '../../../UI/Br/Br';
 
 const Wrapper = styled.div`
 	width: fit-content;
@@ -21,13 +17,6 @@ const Wrapper = styled.div`
 const Row = styled.div`
 	width: fit-content;
 	height: fit-content;
-`;
-
-const StyledBr = styled.div<PropsStyledBr>`
-	width: ${(props) => props.width};
-	height: 1px;
-	background-color: #808080;
-	margin: ${(props) => props.margin};
 `;
 
 const SelectionTypeShoes = () => {
@@ -68,7 +57,7 @@ const SelectionTypeShoes = () => {
 						Ответьте на три вопроса и мы вышлем каталог с самыми подходящими для
 						вас моделями
 					</Text>
-					<StyledBr width='100%' margin='0px 0px 20px 0px' />
+					<Br width='100%' margin='0px 0px 20px 0px' />
 					<Text
 						fontFamily='Intro-Book'
 						fontSize='24px'
@@ -88,7 +77,7 @@ const SelectionTypeShoes = () => {
 						return <PostSelectionShoes key={typeShoes} typeShoes={typeShoes} />;
 					})}
 				</BlockText>
-				<StyledBr width='980px' margin='20px 0px 20px 0px' />
+				<Br width='980px' margin='20px 0px 20px 0px' />
 				<BlockText
 					width='980px'
 					height='fit-content'
