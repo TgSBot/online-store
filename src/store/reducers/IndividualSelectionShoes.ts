@@ -8,11 +8,13 @@ type Page = {
 interface InitialState {
 	allTypeShoes: string[];
 	page: Page;
+	sizeShoes: string;
 }
 
 const initialState: InitialState = {
 	allTypeShoes: [],
 	page: { thisPage: 1, maxPage: 3 },
+	sizeShoes: '',
 };
 
 export const sliceIndividualShoes = createSlice({
@@ -20,8 +22,6 @@ export const sliceIndividualShoes = createSlice({
 	initialState,
 	reducers: {
 		changeTypeShoes(state, action) {
-			// if (typeof action.payload === Object) {
-			// }
 			state.allTypeShoes.push(action.payload);
 			state.allTypeShoes = state.allTypeShoes.flat();
 			const uniqueType = new Set(state.allTypeShoes);
@@ -29,6 +29,9 @@ export const sliceIndividualShoes = createSlice({
 		},
 		changePage(state) {
 			state.page.thisPage += 1;
+		},
+		changeSizeShoes(state, action) {
+			state.sizeShoes = action.payload;
 		},
 	},
 });

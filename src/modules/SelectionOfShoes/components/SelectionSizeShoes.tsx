@@ -17,6 +17,8 @@ const Wrapper = styled.div`
 const Row = styled.div`
 	width: fit-content;
 	height: fit-content;
+	display: flex;
+	flex-direction: column;
 `;
 
 const StyledBr = styled.div<PropsStyledBr>`
@@ -27,6 +29,8 @@ const StyledBr = styled.div<PropsStyledBr>`
 `;
 
 const SelectionSizeShoes = () => {
+	const arraySizeShoes = ['менее 36', '36-38', '39-41', '42-44', '45 и более'];
+
 	return (
 		<Wrapper>
 			<Row>
@@ -49,6 +53,14 @@ const SelectionSizeShoes = () => {
 					вас моделями
 				</Text>
 				<StyledBr width='100%' margin='' />
+				<Text
+					fontFamily='Intro-Book'
+					fontSize='24px'
+					color='#444B58'
+					margin='0px 0px 40px 0px'
+				>
+					Какой размер вам подойдёт?
+				</Text>
 			</Row>
 		</Wrapper>
 	);

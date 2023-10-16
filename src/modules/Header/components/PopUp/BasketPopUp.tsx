@@ -7,6 +7,7 @@ import BlockText from '../../../../UI/BlockText/BlockText';
 import Button from '../../../../UI/Button/Button';
 import Text from '../../../../UI/Text/Text';
 import PostBasketPopUp from '../PostBasketPopUp';
+import { BeautifulNumbers } from '../../../../helpers/BeautifulNumbers';
 
 type PropsWrapper = {
 	display: string;
@@ -127,7 +128,7 @@ const BasketPopUp = () => {
 								fontWeight='700'
 								color='#4D4D4D'
 							>
-								{sumPricePosts}
+								{BeautifulNumbers(sumPricePosts)}
 							</Text>
 						</BlockText>
 						<Button

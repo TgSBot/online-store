@@ -5,6 +5,7 @@ import Button from '../../../../UI/Button/Button';
 import { useAppSelector } from '../../../../hook/redux';
 import Text from '../../../../UI/Text/Text';
 import PostBasketPopUp from '../PostBasketPopUp';
+import { BeautifulNumbers } from '../../../../helpers/BeautifulNumbers';
 
 type PropsCheckMarks = {
 	animation?: string;
@@ -126,7 +127,7 @@ const CheckOrderRegistration = () => {
 						color='#444B58'
 						fontWeight='700'
 						fontSize='16px'
-					>{`${sumPricePosts} ₽`}</Text>
+					>{`${BeautifulNumbers(sumPricePosts)} ₽`}</Text>
 				</Text>
 				<Button
 					width='fit-content'

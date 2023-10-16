@@ -1,4 +1,4 @@
-export const BeautifulNumbers = (num: number): string => {
+export const BeautifulNumbers = (num: number | string): string => {
 	const arrayNumber = String(num).split('').reverse();
 	const res: string[] = [];
 	arrayNumber.forEach((element, index) => {

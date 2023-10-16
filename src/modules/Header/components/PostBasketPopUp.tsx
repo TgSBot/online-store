@@ -8,6 +8,7 @@ import Text from '../../../UI/Text/Text';
 import basketDelete from '../../../assets/svg/trash-1-busket-delete.svg';
 import { useAppDispatch, useAppSelector } from '../../../hook/redux';
 import { sliceBasketPopUp } from '../../../store/reducers/BasketPopUp';
+import { BeautifulNumbers } from '../../../helpers/BeautifulNumbers';
 
 interface IPostBasketPopUp {
 	post: IPosts;
@@ -85,7 +86,7 @@ const PostBasketPopUp: FC<IPostBasketPopUp> = ({ post }) => {
 							fontWeight='700'
 							color='#4D4D4D'
 						>
-							{`${Math.floor(post.net_price)} ₽`}
+							{`${BeautifulNumbers(Math.floor(post.net_price))} ₽`}
 						</Text>
 					</BlockText>
 					<ButtonStyle onClick={deletePosts}>
