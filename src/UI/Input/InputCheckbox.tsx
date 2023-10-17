@@ -6,7 +6,6 @@ import Text from '../Text/Text';
 interface IInputCheckbox {
 	text?: string;
 	onChangeInput?: (event: SyntheticEvent) => void;
-	checked?: boolean;
 	margin?: string;
 	type: string;
 	onClick?: () => void;
@@ -21,6 +20,7 @@ export const StyledInput = styled.input`
 `;
 
 const LabelStyled = styled.label<PropsLabelStyled>`
+	width: fit-content;
 	margin: ${(props) => props.margin || '0px'};
 `;
 
@@ -53,19 +53,23 @@ const Fake = styled.div`
 const InputCheckbox: FC<IInputCheckbox> = ({
 	text,
 	onChangeInput,
-	checked,
 	margin,
 	type,
 	onClick,
 }) => {
 	const [selected, setSelected] = useState(false);
 
+	const onChangeLabel = () => {
+		selected ? setSelected(false) : setSelected(true);
+	};
+
 	return (
-		<LabelStyled margin={margin}>
+		<LabelStyled margin={margin} onChange={onChangeLabel}>
 			<StyledInput
 				type={type}
 				checked={selected}
-				onChange={() => (selected ? setSelected(false) : setSelected(true))}
+				onChange={onChangeInput}
+				onClick={onChangeInput}
 				name='shoes'
 			/>
 			<Fake />

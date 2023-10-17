@@ -23,9 +23,6 @@ export const sliceIndividualShoes = createSlice({
 	reducers: {
 		changeTypeShoes(state, action) {
 			state.allTypeShoes.push(action.payload);
-			state.allTypeShoes = state.allTypeShoes.flat();
-			const uniqueType = new Set(state.allTypeShoes);
-			state.allTypeShoes = Array.from(uniqueType);
 		},
 		changePage(state) {
 			state.page.thisPage += 1;

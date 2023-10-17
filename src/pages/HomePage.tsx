@@ -1,5 +1,5 @@
 import React from 'react';
-import EndOfSelection from '../modules/SelectionOfShoes/components/EndOfSelection';
+import SelectionTypeShoes from '../modules/SelectionOfShoes/components/SelectionTypeShoes';
 
 // import SelectionOfShoes from '../modules/SelectionOfShoes/SelectionOfShoes';
 // import { useAppSelector } from '../hook/redux';
@@ -19,7 +19,7 @@ const HomePage = () => {
 			<OrderRegistration />
 			<Header />
 			<Catalog /> */}
-			<EndOfSelection />
+			<SelectionTypeShoes />
 		</>
 	);
 };
