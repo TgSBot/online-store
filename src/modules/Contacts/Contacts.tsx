@@ -112,7 +112,7 @@ const Contacts: FC = () => {
 						</Text>
 					</BlockText>
 					<BlockText width='fit-content' height='fit-content'>
-						<a href='#'>
+						<a href='!#'>
 							<Img
 								src={vk}
 								alt=''
@@ -121,7 +121,7 @@ const Contacts: FC = () => {
 								margin='0px 20px 0px 0px'
 							/>
 						</a>
-						<a href='#'>
+						<a href='!#'>
 							<Img src={instagram} alt='' width='44px' height='44px' />
 						</a>
 					</BlockText>

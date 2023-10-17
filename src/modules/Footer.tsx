@@ -23,7 +23,7 @@ const Footer = () => {
 	return (
 		<Wrapper>
 			<Row>
-				<a href='#'>
+				<a href='!#'>
 					<Text fontFamily='Intro-Bold' fontSize='30px' fontWeight='700'>
 						SneakMax
 					</Text>
@@ -35,7 +35,7 @@ const Footer = () => {
 					position='relative'
 					top='8px'
 				>
-					<a href='#'>
+					<a href='!#'>
 						<Text
 							fontFamily='Intro-Bold'
 							fontSize='14px'
@@ -44,7 +44,7 @@ const Footer = () => {
 							Каталог
 						</Text>
 					</a>
-					<a href='#'>
+					<a href='!#'>
 						<Text
 							fontFamily='Intro-Bold'
 							fontSize='14px'
@@ -53,7 +53,7 @@ const Footer = () => {
 							О нас
 						</Text>
 					</a>
-					<a href='#'>
+					<a href='!#'>
 						<Text
 							fontFamily='Intro-Bold'
 							fontSize='14px'
@@ -62,7 +62,7 @@ const Footer = () => {
 							Подбор товара
 						</Text>
 					</a>
-					<a href='#'>
+					<a href='!#'>
 						<Text
 							fontFamily='Intro-Bold'
 							fontSize='14px'
@@ -71,7 +71,7 @@ const Footer = () => {
 							Наша команда
 						</Text>
 					</a>
-					<a href='#'>
+					<a href='!#'>
 						<Text
 							fontFamily='Intro-Bold'
 							fontSize='14px'
@@ -80,7 +80,7 @@ const Footer = () => {
 							Доставка и оплата
 						</Text>
 					</a>
-					<a href='#'>
+					<a href='!#'>
 						<Text
 							fontFamily='Intro-Bold'
 							fontSize='14px'
