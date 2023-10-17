@@ -1,7 +1,9 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { styled } from 'styled-components';
 
-interface IButton extends PropsWithChildren, ButtonStyle {}
+interface IButton extends PropsWithChildren, ButtonStyle {
+	disabled?: boolean;
+}
 
 type ButtonStyle = {
 	ground_color?: string;
@@ -10,7 +12,6 @@ type ButtonStyle = {
 	border_radius?: string;
 	margin?: string;
 	type?: string;
-	disabled?: any;
 	onClick?: any;
 	value?: number;
 	border?: string;
@@ -33,9 +34,22 @@ const ButtonStyled = styled.button<ButtonStyle>`
 	}
 `;
 
-const Button: FC<IButton> = ({ children, type, onClick, value, ...props }) => {
+const Button: FC<IButton> = ({
+	children,
+	type,
+	onClick,
+	value,
+	disabled,
+	...props
+}) => {
 	return (
-		<ButtonStyled type={type} onClick={onClick} value={value} {...props}>
+		<ButtonStyled
+			type={type}
+			onClick={onClick}
+			value={value}
+			disabled={disabled}
+			{...props}
+		>
 			{children}
 		</ButtonStyled>
 	);

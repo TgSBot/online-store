@@ -9,6 +9,7 @@ interface IInputCheckbox {
 	margin?: string;
 	type: string;
 	onClick?: () => void;
+	name?: string;
 }
 
 type PropsLabelStyled = {
@@ -63,13 +64,17 @@ const InputCheckbox: FC<IInputCheckbox> = ({
 		selected ? setSelected(false) : setSelected(true);
 	};
 
+	const onClickInput = () => {
+		if (selected === true) return onClick;
+	};
+
 	return (
 		<LabelStyled margin={margin} onChange={onChangeLabel}>
 			<StyledInput
 				type={type}
 				checked={selected}
 				onChange={onChangeInput}
-				onClick={onChangeInput}
+				onClick={onClickInput()}
 				name='shoes'
 			/>
 			<Fake />

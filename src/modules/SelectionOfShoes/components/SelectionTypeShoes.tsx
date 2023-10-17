@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Text from '../../../UI/Text/Text';
 import BlockText from '../../../UI/BlockText/BlockText';
 import PostSelectionShoes from './PostSelectionShoes';
-import { useAppSelector } from '../../../hook/redux';
+import { useAppDispatch, useAppSelector } from '../../../hook/redux';
 import Button from '../../../UI/Button/Button';
 import Br from '../../../UI/Br/Br';
+import { sliceIndividualShoes } from '../../../store/reducers/IndividualSelectionShoes';
 
 const Wrapper = styled.div`
 	width: fit-content;
@@ -20,7 +21,13 @@ const Row = styled.div`
 `;
 
 const SelectionTypeShoes = () => {
-	const { page } = useAppSelector((state) => state.IndividualSelectionShoes);
+	const [error, setError] = useState(false);
+
+	const { page, allTypeShoes } = useAppSelector(
+		(state) => state.IndividualSelectionShoes
+	);
+	const { changePage } = sliceIndividualShoes.actions;
+	const dispatch = useAppDispatch();
 
 	const typeSelectionShoes = [
 		'Топсайдеры',
@@ -30,6 +37,17 @@ const SelectionTypeShoes = () => {
 		'Зимние',
 		'Походные',
 	];
+
+	const nextStep = () => {
+		if (allTypeShoes.length > 0) {
+			dispatch(changePage());
+		}
+		setError(true);
+	};
+
+	useEffect(() => {
+		if (allTypeShoes.length > 0 && error) setError(false);
+	}, [error, allTypeShoes]);
 
 	return (
 		<Wrapper>
@@ -77,6 +95,18 @@ const SelectionTypeShoes = () => {
 						return <PostSelectionShoes key={typeShoes} typeShoes={typeShoes} />;
 					})}
 				</BlockText>
+				{error ? (
+					<Text
+						fontFamily='Intro-Regular'
+						fontSize='24px'
+						color='#CC4949'
+						margin='0px 0px 0px 0px'
+					>
+						Пожалуйста выберите тип кроссовок
+					</Text>
+				) : (
+					''
+				)}
 				<Br width='980px' margin='20px 0px 20px 0px' />
 				<BlockText
 					width='980px'
@@ -92,6 +122,7 @@ const SelectionTypeShoes = () => {
 						height='50px'
 						border='1px solid #444B58'
 						border_radius='4px'
+						onClick={nextStep}
 					>
 						<Text fontFamily='Intro-Regular' fontSize='16px' color='#444B58'>
 							Следующий шаг

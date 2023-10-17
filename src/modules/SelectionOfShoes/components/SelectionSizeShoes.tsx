@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Text from '../../../UI/Text/Text';
 import InputCheckbox from '../../../UI/Input/InputCheckbox';
 import BlockText from '../../../UI/BlockText/BlockText';
-import { useAppSelector } from '../../../hook/redux';
+import { useAppDispatch, useAppSelector } from '../../../hook/redux';
 import Img from '../../../UI/IMG/Img';
 import shoes from '../../../assets/img/rectangle-45-shoes.jpg';
 import Button from '../../../UI/Button/Button';
 import Br from '../../../UI/Br/Br';
+import { sliceIndividualShoes } from '../../../store/reducers/IndividualSelectionShoes';
 
 const Wrapper = styled.div`
 	width: fit-content;
@@ -32,9 +33,36 @@ const StyledForm = styled.form`
 `;
 
 const SelectionSizeShoes = () => {
-	const { page } = useAppSelector((state) => state.IndividualSelectionShoes);
+	const [error, setError] = useState(false);
+	const { page, sizeShoes } = useAppSelector(
+		(state) => state.IndividualSelectionShoes
+	);
+	const { changeSizeShoes, deleteSizeShoesInArray, changePage } =
+		sliceIndividualShoes.actions;
+	const dispatch = useAppDispatch();
 
 	const arraySizeShoes = ['менее 36', '36-38', '39-41', '42-44', '45 и более'];
+
+	const onChangeInput = (size: string) => {
+		if (sizeShoes.indexOf(String(size)) === -1) {
+			dispatch(changeSizeShoes(size));
+		}
+	};
+
+	const onClickInput = (size: string) => {
+		dispatch(deleteSizeShoesInArray(size));
+	};
+
+	const nextStep = () => {
+		if (sizeShoes.length > 0) {
+			dispatch(changePage());
+		}
+		setError(true);
+	};
+
+	useEffect(() => {
+		if (sizeShoes.length > 0 && error) setError(false);
+	}, [error, sizeShoes]);
 
 	return (
 		<Wrapper>
@@ -62,10 +90,22 @@ const SelectionSizeShoes = () => {
 					fontFamily='Intro-Book'
 					fontSize='24px'
 					color='#444B58'
-					margin='0px 0px 40px 0px'
+					margin={error ? '0px 0px 20px 0px' : '0px 0px 40px 0px'}
 				>
 					Какой размер вам подойдёт?
 				</Text>
+				{error ? (
+					<Text
+						fontFamily='Intro-Regular'
+						fontSize='24px'
+						color='#CC4949'
+						margin='0px 0px 20px 0px'
+					>
+						Пожалуйста выберите размер кроссовок
+					</Text>
+				) : (
+					''
+				)}
 				<StyledForm>
 					{arraySizeShoes.map((size) => {
 						return (
@@ -73,6 +113,8 @@ const SelectionSizeShoes = () => {
 								type='checkbox'
 								key={size}
 								text={size}
+								onChangeInput={() => onChangeInput(size)}
+								onClick={() => onClickInput(size)}
 								margin='0px 70px 0px 0px'
 							/>
 						);
@@ -100,6 +142,7 @@ const SelectionSizeShoes = () => {
 						height='50px'
 						border='1px solid #444B58'
 						border_radius='4px'
+						onClick={nextStep}
 					>
 						<Text fontFamily='Intro-Regular' fontSize='16px' color='#444B58'>
 							Следующий шаг

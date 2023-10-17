@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import { styled } from 'styled-components';
 import Text from '../../../UI/Text/Text';
 import BlockText from '../../../UI/BlockText/BlockText';
-import { useAppSelector } from '../../../hook/redux';
+import { useAppDispatch, useAppSelector } from '../../../hook/redux';
 import Button from '../../../UI/Button/Button';
 import Br from '../../../UI/Br/Br';
+import { sliceIndividualShoes } from '../../../store/reducers/IndividualSelectionShoes';
 
 const Wrapper = styled.div`
 	width: fit-content;
@@ -42,7 +43,21 @@ const StyledInput = styled.textarea`
 `;
 
 const Details = () => {
+	const [text, setText] = useState('');
+
 	const { page } = useAppSelector((state) => state.IndividualSelectionShoes);
+	const { changeIndividualWishes, changePage } = sliceIndividualShoes.actions;
+	const dispatch = useAppDispatch();
+
+	const onChangeInput = () => {
+		dispatch(changeIndividualWishes(text));
+	};
+
+	const nextStep = () => {
+		onChangeInput();
+		dispatch(changePage());
+	};
+
 	return (
 		<Wrapper>
 			<Row>
@@ -73,7 +88,12 @@ const Details = () => {
 				>
 					Уточните какие-либо моменты
 				</Text>
-				<StyledInput placeholder='Введите сообщение' />
+				<StyledInput
+					placeholder='Введите сообщение'
+					onChange={(event: SyntheticEvent<HTMLTextAreaElement>) =>
+						setText(event.currentTarget.value)
+					}
+				/>
 				<Br margin='0px 0px 20px 0px' />
 				<BlockText
 					width='100%'
@@ -89,6 +109,7 @@ const Details = () => {
 						height='50px'
 						border='1px solid #444B58'
 						border_radius='4px'
+						onClick={nextStep}
 					>
 						<Text fontFamily='Intro-Regular' fontSize='16px' color='#444B58'>
 							Следующий шаг

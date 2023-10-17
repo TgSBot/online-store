@@ -1,4 +1,4 @@
-import React, { FC, SyntheticEvent } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import Img from '../../../UI/IMG/Img';
 import shoes from '../../../assets/img/selection-shoes.jpg';
@@ -22,14 +22,19 @@ const PostSelectionShoes: FC<PropsPostSelectionShoes> = ({ typeShoes }) => {
 	const { allTypeShoes } = useAppSelector(
 		(state) => state.IndividualSelectionShoes
 	);
-	const { changeTypeShoes } = sliceIndividualShoes.actions;
-	const dispatch = useAppDispatch;
+	const { changeTypeShoes, deleteTypeShoesInArray } =
+		sliceIndividualShoes.actions;
+	const dispatch = useAppDispatch();
 
-	const onChangeInput = (event: SyntheticEvent) => {
-		event.preventDefault();
+	const onChangeInput = () => {
+		if (allTypeShoes.indexOf(String(typeShoes)) === -1) {
+			dispatch(changeTypeShoes(typeShoes));
+		}
 	};
 
-	console.log(allTypeShoes);
+	const onClickInput = () => {
+		dispatch(deleteTypeShoesInArray(typeShoes));
+	};
 
 	return (
 		<Wrapper>
@@ -44,6 +49,7 @@ const PostSelectionShoes: FC<PropsPostSelectionShoes> = ({ typeShoes }) => {
 				type='checkbox'
 				onChangeInput={onChangeInput}
 				text={typeShoes}
+				onClick={onClickInput}
 			/>
 		</Wrapper>
 	);
