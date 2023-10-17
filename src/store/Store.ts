@@ -5,6 +5,7 @@ import PopUp from './reducers/PopUp';
 import BasketPopUp from './reducers/BasketPopUp';
 import OrderRegistration from './reducers/OrderRegistration';
 import IndividualSelectionShoes from './reducers/IndividualSelectionShoes';
+import ConnectUs from './reducers/ConnectUs';
 
 const rootReducer = combineReducers({
 	BasketPopUp,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
 	PopUp,
 	OrderRegistration,
 	IndividualSelectionShoes,
+	ConnectUs,
 });
 
 export const setupStore = () => {

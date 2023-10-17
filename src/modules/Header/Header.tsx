@@ -24,8 +24,8 @@ const Row = styled.div`
 
 const TransparentInscription = styled.div`
 	position: absolute;
-	top: 218px;
-	right: 445px;
+	top: 250px;
+	right: 415px;
 	z-index: 0;
 	width: 980px;
 	height: 200px;

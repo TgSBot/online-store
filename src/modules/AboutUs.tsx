@@ -87,10 +87,9 @@ const AboutUs = () => {
 					position='absolute'
 					top='240px'
 					left='252px'
-					border='px solid #F14F4F'
+					border='1px solid #F14F4F'
 				/>
 			</BlockText>
-
 			<Row>
 				<Title>
 					<BlockText

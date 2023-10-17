@@ -5,6 +5,8 @@ import Text from '../../../UI/Text/Text';
 import Input from '../../../UI/Input/Input';
 import Button from '../../../UI/Button/Button';
 import BlockText from '../../../UI/BlockText/BlockText';
+import { sliceConnectUs } from '../../../store/reducers/ConnectUs';
+import { useAppDispatch } from '../../../hook/redux';
 
 type FormValue = {
 	firstName: string;
@@ -50,8 +52,13 @@ const Form: FC = () => {
 		setValue,
 	} = useForm<FormValue>({ mode: 'onChange' });
 
-	const HandleSubmitOn = (data: any): any => {
-		console.log(JSON.stringify(data));
+	const { changeForm } = sliceConnectUs.actions;
+	const dispatch = useAppDispatch();
+
+	const HandleSubmitOn = (data: FormValue): any => {
+		dispatch(
+			changeForm({ name: data.firstName, phoneNumber: data.phoneNumber })
+		);
 		setValue('firstName', '');
 		setValue('phoneNumber', '');
 	};
@@ -112,7 +119,7 @@ const Form: FC = () => {
 							rules={{
 								required: true,
 								minLength: 11,
-								pattern: /^[\d\+][\d\(\)\ -]{4,14}\d$/,
+								pattern: /^[\d][\d -]{4,14}\d$/,
 							}}
 							render={({ field: { onChange, onBlur, value } }) => (
 								<Input
@@ -133,6 +140,7 @@ const Form: FC = () => {
 						/>
 					</BlockText>
 					<Button
+						type='submit'
 						width='338px'
 						height='60px'
 						ground_color='#F14F4F'

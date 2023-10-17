@@ -77,7 +77,6 @@ const ConnectUs = () => {
 								height='55.64927px'
 							/>
 						</BlockText>
-
 						<BlockPhoto>
 							<Photo margin='0px 18px 0px 0px'>
 								<Img

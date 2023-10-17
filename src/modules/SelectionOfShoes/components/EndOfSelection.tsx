@@ -9,8 +9,7 @@ import phone from '../../../assets/img/devices-apple-i-phone-11-prophone.png';
 import BlockText from '../../../UI/BlockText/BlockText';
 import shipped from '../../../assets/img/shipped.png';
 import { sliceIndividualShoes } from '../../../store/reducers/IndividualSelectionShoes';
-import { useAppDispatch, useAppSelector } from '../../../hook/redux';
-import { event } from 'yandex-maps';
+import { useAppDispatch } from '../../../hook/redux';
 
 const Wrapper = styled.div`
 	width: fit-content;

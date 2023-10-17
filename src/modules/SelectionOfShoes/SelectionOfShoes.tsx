@@ -22,7 +22,6 @@ const Row = styled.div`
 
 const SelectionOfShoes = () => {
 	const { page } = useAppSelector((state) => state.IndividualSelectionShoes);
-	console.log(page.thisPage);
 
 	return (
 		<Wrapper>

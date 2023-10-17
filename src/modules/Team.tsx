@@ -6,11 +6,13 @@ import Img from '../UI/IMG/Img';
 import Circle from '../UI/Circle/Circle';
 
 const Wrapper = styled.div`
-	position: relative;
+	width: 100%;
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	background-color: #484283;
-	z-index: 0;
+	position: relative;
+	overflow: hidden;
 `;
 
 const Row = styled.div`
