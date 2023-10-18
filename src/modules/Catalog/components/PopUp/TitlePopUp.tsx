@@ -65,15 +65,19 @@ const TitlePopUp = () => {
 		return false;
 	};
 
-	const ButtonClickBasketPopUp = (
+	const buttonClickBasketPopUp = (
 		event: SyntheticEvent<HTMLButtonElement>
 	): void => {
-		event.preventDefault();
 		if (indexOf()) dispatch(changePostBasket(post));
 		if (indexOf() === false) {
 			dispatch(changeActivePopUp(false));
 			dispatch(changeStatusActive(true));
 		}
+	};
+
+	const timeClickButton = () => {
+		dispatch(changeActivePopUp(false));
+		setTimeout(buttonClickBasketPopUp, 600);
 	};
 
 	return (
@@ -150,18 +154,35 @@ const TitlePopUp = () => {
 					{BeautifulNumbers(Math.floor(Number(post?.price)))}
 				</Text>
 			</BlockText>
-			<Button
-				width='430px'
-				height='60px'
-				border_radius='4px'
-				ground_color='#F14F4F'
-				margin='96px 0px 0px 0px'
-				onClick={ButtonClickBasketPopUp}
-			>
-				<Text fontFamily='Intro-Regular' fontSize='16px' color='#FFF'>
-					Заказать
-				</Text>
-			</Button>
+			{indexOf() === false ? (
+				<a href='#header'>
+					<Button
+						width='430px'
+						height='60px'
+						border_radius='4px'
+						ground_color='#F14F4F'
+						margin='96px 0px 0px 0px'
+						onClick={timeClickButton}
+					>
+						<Text fontFamily='Intro-Regular' fontSize='16px' color='#FFF'>
+							Заказать
+						</Text>
+					</Button>
+				</a>
+			) : (
+				<Button
+					width='430px'
+					height='60px'
+					border_radius='4px'
+					ground_color='#F14F4F'
+					margin='96px 0px 0px 0px'
+					onClick={buttonClickBasketPopUp}
+				>
+					<Text fontFamily='Intro-Regular' fontSize='16px' color='#FFF'>
+						Заказать
+					</Text>
+				</Button>
+			)}
 			<BlockText width='fit-content' height='fit-content'>
 				<AllAdvantages>
 					<Advantages>Бесплатная доставка до двери</Advantages>

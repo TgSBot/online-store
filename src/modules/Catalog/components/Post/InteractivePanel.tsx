@@ -66,12 +66,15 @@ const InteractivePanel: FC<IInteractivePanel> = ({ post }) => {
 		return false;
 	};
 
-	const ButtonClickBasketPopUp = (
+	const buttonClickBasketPopUp = (
 		event: SyntheticEvent<HTMLButtonElement>
 	): void => {
-		event.preventDefault();
 		if (indexOf()) dispatch(changePostBasket(post));
 		if (indexOf() === false) dispatch(changeStatusActive(true));
+	};
+
+	const timeClickButton = () => {
+		setTimeout(buttonClickBasketPopUp, 500);
 	};
 
 	return (
@@ -96,17 +99,33 @@ const InteractivePanel: FC<IInteractivePanel> = ({ post }) => {
 						height='18.255px'
 					/>
 				</PostButton>
-				<PostButton
-					background_color={indexOf() ? '#444b58' : '#F14F4F'}
-					onClick={ButtonClickBasketPopUp}
-				>
-					<StyledImg
-						src={basketButton}
-						alt=''
-						width='23.125px'
-						height='18.255px'
-					/>
-				</PostButton>
+				{indexOf() === false ? (
+					<a href='#header'>
+						<PostButton
+							background_color={indexOf() ? '#444b58' : '#F14F4F'}
+							onClick={timeClickButton}
+						>
+							<StyledImg
+								src={basketButton}
+								alt=''
+								width='23.125px'
+								height='18.255px'
+							/>
+						</PostButton>
+					</a>
+				) : (
+					<PostButton
+						background_color={indexOf() ? '#444b58' : '#F14F4F'}
+						onClick={buttonClickBasketPopUp}
+					>
+						<StyledImg
+							src={basketButton}
+							alt=''
+							width='23.125px'
+							height='18.255px'
+						/>
+					</PostButton>
+				)}
 			</BlockText>
 		</InteractiveMenu>
 	);
