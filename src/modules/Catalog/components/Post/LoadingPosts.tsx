@@ -69,15 +69,20 @@ const LoadingPosts = () => {
 				? dispatch(changeStatusError(true))
 				: dispatch(
 						changePosts(
-							posts.data.data.map((post: object) => {
-								return {
-									...post,
-									gender: randomGenderPost(),
-									sizeShoes: randomSizeShoes(),
-									rating: randomRating(),
-									productAvailability: randomProductAvailability(),
-								};
-							})
+							[...posts.data.data]
+								.sort(
+									(first, second) =>
+										Number(first.net_price) - Number(second.net_price)
+								)
+								.map((post: object) => {
+									return {
+										...post,
+										gender: randomGenderPost(),
+										sizeShoes: randomSizeShoes(),
+										rating: randomRating(),
+										productAvailability: randomProductAvailability(),
+									};
+								})
 						)
 				  );
 		};
