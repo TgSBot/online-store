@@ -1,6 +1,5 @@
 import React from 'react';
 import SelectionOfShoes from '../modules/SelectionOfShoes/SelectionOfShoes';
-import { useAppSelector } from '../hook/redux';
 import Catalog from '../modules/Catalog/Catalog';
 import PopUpPost from '../modules/Catalog/components/PopUpPost';
 import BasketPopUp from '../modules/Header/components/PopUp/BasketPopUp';
@@ -14,12 +13,10 @@ import Contacts from '../modules/Contacts/Contacts';
 import Footer from '../modules/Footer';
 
 const HomePage = () => {
-	const { active } = useAppSelector((state) => state.PopUp);
-
 	return (
 		<>
-			<PopUpPost display={active ? true : false} />
 			<BasketPopUp />
+			<PopUpPost />
 			<OrderRegistration />
 			<Header />
 			<Catalog />

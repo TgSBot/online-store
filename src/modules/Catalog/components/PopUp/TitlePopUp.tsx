@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import { styled } from 'styled-components';
 import checkMarks from '../../../../assets/svg/vectorcheck-mark.svg';
-import { useAppSelector } from '../../../../hook/redux';
+import { useAppDispatch, useAppSelector } from '../../../../hook/redux';
 import BlockText from '../../../../UI/BlockText/BlockText';
 import Button from '../../../../UI/Button/Button';
 import Text from '../../../../UI/Text/Text';
 import SliderSizeShoes from './SliderSizeShoes';
+import { BeautifulNumbers } from '../../../../helpers/BeautifulNumbers';
+import { sliceBasketPopUp } from '../../../../store/reducers/BasketPopUp';
+import { slicePopUp } from '../../../../store/reducers/PopUp';
 
 const Title = styled.div`
 	width: fit-content;
@@ -45,6 +48,33 @@ const Advantages = styled.li`
 
 const TitlePopUp = () => {
 	const { post } = useAppSelector((state) => state.PopUp);
+	const { postBasket } = useAppSelector((state) => state.BasketPopUp);
+	const { changePostBasket, changeStatusActive } = sliceBasketPopUp.actions;
+	const { changeActivePopUp } = slicePopUp.actions;
+	const dispatch = useAppDispatch();
+
+	const indexOf = () => {
+		const indexOf = { count: 0, indexOf: 0 };
+		postBasket.forEach((posts, index) => {
+			if (posts.id === post?.id) {
+				indexOf.count = 1;
+				indexOf.indexOf = index;
+			}
+		});
+		if (indexOf.count === 0) return true;
+		return false;
+	};
+
+	const ButtonClickBasketPopUp = (
+		event: SyntheticEvent<HTMLButtonElement>
+	): void => {
+		event.preventDefault();
+		if (indexOf()) dispatch(changePostBasket(post));
+		if (indexOf() === false) {
+			dispatch(changeActivePopUp(false));
+			dispatch(changeStatusActive(true));
+		}
+	};
 
 	return (
 		<Title>
@@ -108,16 +138,16 @@ const TitlePopUp = () => {
 					fontWeight='700'
 					color='#444B58'
 				>
-					{post?.net_price}
+					{BeautifulNumbers(Math.floor(Number(post?.net_price)))}
 				</Text>
 				<Text
 					fontFamily='Intro-Bold'
 					fontSize='16px'
-					fontWeight='400'
 					color='#B2B5BB'
 					margin='auto 0px auto 32px'
+					text_decoration='line-through'
 				>
-					{post?.price}
+					{BeautifulNumbers(Math.floor(Number(post?.price)))}
 				</Text>
 			</BlockText>
 			<Button
@@ -126,6 +156,7 @@ const TitlePopUp = () => {
 				border_radius='4px'
 				ground_color='#F14F4F'
 				margin='96px 0px 0px 0px'
+				onClick={ButtonClickBasketPopUp}
 			>
 				<Text fontFamily='Intro-Regular' fontSize='16px' color='#FFF'>
 					Заказать

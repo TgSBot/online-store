@@ -24,7 +24,7 @@ const SelectionOfShoes = () => {
 	const { page } = useAppSelector((state) => state.IndividualSelectionShoes);
 
 	return (
-		<Wrapper>
+		<Wrapper id='selectionOfShoes'>
 			<Row>
 				{page.thisPage === 1 ? (
 					<SelectionTypeShoes />

@@ -13,21 +13,27 @@ type PropsWrapper = {
 	display: string;
 };
 
+type PropsRow = {
+	display: string;
+};
+
 const Wrapper = styled.div<PropsWrapper>`
 	width: 100vw;
 	height: 100vw;
 	display: ${(props) => props.display};
 	background-color: rgba(0, 0, 0, 0.35);
-	position: absolute;
+	position: fixed;
 	z-index: 3;
 `;
 
-const Row = styled.div`
+const Row = styled.div<PropsRow>`
 	width: fit-content;
 	height; fit-content;
 	position: absolute;
-	top: 77px;
-	left: 1055px;
+	top: 72px;
+	left: 1032px;
+	z-index: 4;
+	display: ${(props) => props.display};
 `;
 
 const AllPurchases = styled.div`
@@ -85,8 +91,12 @@ const BasketPopUp = () => {
 	}, [changeSumPricePosts, dispatch, postBasket]);
 
 	return (
-		<Wrapper display={active ? 'flex' : 'none'} onClick={closePopUp}>
-			<Row onClick={(event: SyntheticEvent) => event.stopPropagation()}>
+		<>
+			<Wrapper display={active ? 'flex' : 'none'} onClick={closePopUp} />
+			<Row
+				onClick={(event: SyntheticEvent) => event.stopPropagation()}
+				display={active ? 'block' : 'none'}
+			>
 				<AllPurchases>
 					{postBasket.length === 0 ? (
 						<Text
@@ -146,7 +156,7 @@ const BasketPopUp = () => {
 					</BlockAllSum>
 				)}
 			</Row>
-		</Wrapper>
+		</>
 	);
 };
 

@@ -8,6 +8,7 @@ interface IInput extends InputStyle {
 	onBlur?: any;
 	value?: any;
 	ref?: any;
+	onClick?: any;
 }
 
 type InputStyle = {
@@ -41,6 +42,7 @@ const Input: FC<IInput> = ({ ref, ...props }) => {
 			{...props}
 			value={props.value}
 			placeholder={props.placeholder}
+			onClick={props.onClick}
 			type={props.type}
 		/>
 	);

@@ -33,7 +33,7 @@ const TransparentInscription = styled.div`
 
 const Header: FC = () => {
 	return (
-		<Wrapper>
+		<Wrapper id='header'>
 			<TransparentInscription>
 				<Text
 					fontFamily='Intro-Bold'
@@ -57,16 +57,18 @@ const Header: FC = () => {
 						многие другие по низким ценам
 					</Text>
 				</BlockText>
-				<Button
-					ground_color='#F14F4F'
-					width='250px'
-					height='60px'
-					border_radius='4px'
-				>
-					<Text fontFamily='Intro-Regular' fontSize='16px' color='white'>
-						Перейти к покупкам
-					</Text>
-				</Button>
+				<a href='#catalog'>
+					<Button
+						ground_color='#F14F4F'
+						width='250px'
+						height='60px'
+						border_radius='4px'
+					>
+						<Text fontFamily='Intro-Regular' fontSize='16px' color='white'>
+							Перейти к покупкам
+						</Text>
+					</Button>
+				</a>
 			</Row>
 		</Wrapper>
 	);

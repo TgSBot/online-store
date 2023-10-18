@@ -1,4 +1,4 @@
-import React, { FormEvent, SyntheticEvent, useState } from 'react';
+import React, { FormEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../../hook/redux';
 import BlockText from '../../../../UI/BlockText/BlockText';
@@ -41,39 +41,63 @@ const Form = styled.form`
 
 const OrderRegistration = () => {
 	const [name, setName] = useState('');
+	const [errorName, setErrorName] = useState(false);
+	const [nameIsDirty, setNameIsDirty] = useState(false);
 	const [numberPhone, setNumberPhone] = useState('');
+	const [errorNumberPhone, setErrorNumberPhone] = useState(false);
+	const [numberPhoneIsDirty, setNumberPhoneIsDirty] = useState(false);
 	const [email, setEmail] = useState('');
-	// const [error, setError] = useState(false);
+	const [errorEmail, setErrorEmail] = useState(false);
+	const [emailIsDirty, setEmailIsDirty] = useState(false);
 
 	// Redux
 	const { status } = useAppSelector((state) => state.OrderRegistration);
-	const { changeStatus } = sliceOrderRegistration.actions;
+	const { changeStatus, changePurchaseOrder } = sliceOrderRegistration.actions;
 	const dispatch = useAppDispatch();
+
+	const isValidName = (name: string) => {
+		return name.length >= 2 ? true : false;
+	};
+
+	const isValidNumberPhone = (phoneNumber: string) => {
+		return /^[\d][\d -]{4,14}\d$/.test(phoneNumber);
+	};
+
+	const isValidEmail = (email: string) => {
+		return /\S+@\S+\.\S+/.test(email);
+	};
+
+	const sendingOffer = (event: SyntheticEvent) => {
+		event.preventDefault();
+		if (
+			isValidName(name) &&
+			isValidEmail(email) &&
+			isValidNumberPhone(numberPhone)
+		) {
+			console.log(
+				`Форма оформления продажи: имя -> ${name}, номер телефона -> ${numberPhone}, почта -> ${email}`
+			);
+			dispatch(changePurchaseOrder({ name, numberPhone, email }));
+			dispatch(changeStatus(false));
+		}
+	};
+
+	useEffect(() => {
+		!isValidName(name) && nameIsDirty
+			? setErrorName(true)
+			: setErrorName(false);
+		!isValidNumberPhone(numberPhone) && numberPhoneIsDirty
+			? setErrorNumberPhone(true)
+			: setErrorNumberPhone(false);
+		!isValidEmail(email) && emailIsDirty
+			? setErrorEmail(true)
+			: setErrorEmail(false);
+	}, [email, name, numberPhone, emailIsDirty, numberPhoneIsDirty, nameIsDirty]);
 
 	const closePopUp = (event: SyntheticEvent) => {
 		event.preventDefault();
 		dispatch(changeStatus(false));
 	};
-
-	// const validationName = () => {
-	// 	if (name.length < 3) {
-	// 		setError(true);
-	// 		return false;
-	// 	}
-	// 	return true;
-	// };
-
-	// const validationPhoneNumber = () => {
-	// 	if (numberPhone.length < 11) {
-	// 		setError(true);
-	// 		return false;
-	// 	}
-	// 	return true;
-	// };
-
-	// const validationEmail = () => {
-	// 	return /\S+@\S+\.\S+/.test(email);
-	// };
 
 	return (
 		<Wrapper display={status ? 'flex' : 'none'} onClick={closePopUp}>
@@ -94,11 +118,24 @@ const OrderRegistration = () => {
 							placeholder='Ваше имя'
 							border_radius='4px'
 							margin='0px 0px 10px 0px'
+							onClick={() => setNameIsDirty(true)}
 							onChange={(event: FormEvent<HTMLInputElement>) =>
 								setName(event.currentTarget.value)
 							}
 							value={name}
 						/>
+						{errorName ? (
+							<Text
+								fontFamily='Intro-Regular'
+								fontSize='24px'
+								color='#CC4949'
+								margin='0px 0px 10px 0px'
+							>
+								Имя должно быть длиннее 2 букв
+							</Text>
+						) : (
+							''
+						)}
 						<Input
 							type='text'
 							width='500px'
@@ -107,11 +144,24 @@ const OrderRegistration = () => {
 							placeholder='Номер телефона'
 							border_radius='4px'
 							margin='0px 0px 10px 0px'
+							onClick={() => setNumberPhoneIsDirty(true)}
 							onChange={(event: FormEvent<HTMLInputElement>) =>
 								setNumberPhone(event.currentTarget.value)
 							}
 							value={numberPhone}
 						/>
+						{errorNumberPhone ? (
+							<Text
+								fontFamily='Intro-Regular'
+								fontSize='24px'
+								color='#CC4949'
+								margin='0px 0px 10px 0px'
+							>
+								Не правильный номер телефона
+							</Text>
+						) : (
+							''
+						)}
 						<Input
 							type='text'
 							width='500px'
@@ -119,18 +169,31 @@ const OrderRegistration = () => {
 							background_color='#F6F6F6'
 							placeholder='E-mail'
 							border_radius='4px'
-							margin='0px 0px 51px 0px'
+							margin={errorEmail ? '0px 0px 10px 0px' : '0px 0px 51px 0px'}
+							onClick={() => setEmailIsDirty(true)}
 							onChange={(event: FormEvent<HTMLInputElement>) =>
 								setEmail(event.currentTarget.value)
 							}
 							value={email}
 						/>
+						{errorEmail ? (
+							<Text
+								fontFamily='Intro-Regular'
+								fontSize='24px'
+								color='#CC4949'
+								margin='0px 0px 41px 0px'
+							>
+								Не правильный email
+							</Text>
+						) : (
+							''
+						)}
 						<Button
 							width='221px'
 							height='60px'
 							ground_color='#F14F4F'
 							border_radius='4px'
-							// disabled={error ? true : false}
+							onClick={sendingOffer}
 						>
 							<Text fontFamily='Intro-Regular' fontSize='16px' color='#FFF'>
 								Оформить заказ

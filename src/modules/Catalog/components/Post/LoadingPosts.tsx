@@ -146,7 +146,7 @@ const LoadingPosts = () => {
 						<Post
 							key={post.id}
 							title={post.name}
-							price={Math.ceil(post.net_price)}
+							price={post.net_price}
 							img={shoes}
 							post={post}
 						/>
@@ -173,7 +173,6 @@ const LoadingPosts = () => {
 						height='60px'
 						ground_color='#F14F4F'
 						border_radius='4px'
-						margin='0px 0px 60px 0px'
 						onClick={loadingPostsButton}
 					>
 						<Text fontFamily='Intro-Regular' fontSize='16px' color='#FFF'>

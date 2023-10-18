@@ -2,6 +2,9 @@ import React from 'react';
 import { styled } from 'styled-components';
 import Text from '../UI/Text/Text';
 import BlockText from '../UI/BlockText/BlockText';
+import Button from '../UI/Button/Button';
+import { sliceBasketPopUp } from '../store/reducers/BasketPopUp';
+import { useAppDispatch } from '../hook/redux';
 
 const Wrapper = styled.div`
 	width: 100%;
@@ -20,10 +23,21 @@ const Row = styled.div`
 `;
 
 const Footer = () => {
+	const { changeStatusActive } = sliceBasketPopUp.actions;
+	const dispatch = useAppDispatch();
+
+	const openPopUp = (): void => {
+		dispatch(changeStatusActive(true));
+	};
+
+	const timeOutDispatch = () => {
+		setTimeout(openPopUp, 750);
+	};
+
 	return (
-		<Wrapper>
+		<Wrapper id='footer'>
 			<Row>
-				<a href='!#'>
+				<a href='#header'>
 					<Text fontFamily='Intro-Bold' fontSize='30px' fontWeight='700'>
 						SneakMax
 					</Text>
@@ -34,8 +48,9 @@ const Footer = () => {
 					flex_direction='row'
 					position='relative'
 					top='8px'
+					align_items='center'
 				>
-					<a href='!#'>
+					<a href='#catalog'>
 						<Text
 							fontFamily='Intro-Bold'
 							fontSize='14px'
@@ -44,7 +59,7 @@ const Footer = () => {
 							Каталог
 						</Text>
 					</a>
-					<a href='!#'>
+					<a href='#aboutUs'>
 						<Text
 							fontFamily='Intro-Bold'
 							fontSize='14px'
@@ -53,7 +68,7 @@ const Footer = () => {
 							О нас
 						</Text>
 					</a>
-					<a href='!#'>
+					<a href='#selectionOfShoes'>
 						<Text
 							fontFamily='Intro-Bold'
 							fontSize='14px'
@@ -62,7 +77,7 @@ const Footer = () => {
 							Подбор товара
 						</Text>
 					</a>
-					<a href='!#'>
+					<a href='team'>
 						<Text
 							fontFamily='Intro-Bold'
 							fontSize='14px'
@@ -71,16 +86,22 @@ const Footer = () => {
 							Наша команда
 						</Text>
 					</a>
-					<a href='!#'>
-						<Text
-							fontFamily='Intro-Bold'
-							fontSize='14px'
-							margin='0px 40px 0px 0px'
+					<a href='#header'>
+						<Button
+							width='fit-content'
+							height='fit-content'
+							onClick={timeOutDispatch}
 						>
-							Доставка и оплата
-						</Text>
+							<Text
+								fontFamily='Intro-Bold'
+								fontSize='14px'
+								margin='0px 40px 0px 0px'
+							>
+								Доставка и оплата
+							</Text>
+						</Button>
 					</a>
-					<a href='!#'>
+					<a href='#contacts'>
 						<Text
 							fontFamily='Intro-Bold'
 							fontSize='14px'

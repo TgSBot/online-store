@@ -15,13 +15,13 @@ const Wrapper = styled.div`
 const Row = styled.div`
 	width: fit-content;
 	height: fit-content;
-	margin: 60px 0px 0px 0px;
+	margin: 60px 0px 60px 0px;
 	align-items: center;
 `;
 
 const Catalog: FC = () => {
 	return (
-		<Wrapper>
+		<Wrapper id='catalog'>
 			<Row>
 				<Text
 					fontFamily='Intro-Bold'

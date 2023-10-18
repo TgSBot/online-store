@@ -33,7 +33,7 @@ const Post = styled.div`
 
 const Team: FC = () => {
 	return (
-		<Wrapper>
+		<Wrapper id='team'>
 			<Circle
 				width='686px'
 				height='686px'

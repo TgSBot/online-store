@@ -33,7 +33,7 @@ const Title = styled.div`
 
 const Contacts: FC = () => {
 	return (
-		<Wrapper>
+		<Wrapper id='contacts'>
 			<Row>
 				<Title>
 					<BlockText

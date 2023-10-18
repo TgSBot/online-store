@@ -18,6 +18,7 @@ interface IText extends PropsWithChildren {
 	onClick?: any;
 	opacity?: string;
 	vertical_align?: string;
+	text_decoration?: string;
 }
 
 const StyledText = styled.span<IText>`
@@ -35,6 +36,7 @@ const StyledText = styled.span<IText>`
 	z-index: ${(props) => props.z_index || '0'};
 	opacity: ${(props) => props.opacity};
 	vertical-align: ${(props) => props.vertical_align};
+	text-decoration: ${(props) => props.text_decoration || 'none'};
 `;
 
 const Text: FC<IText> = ({ children, onClick, ...props }) => {

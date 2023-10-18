@@ -57,7 +57,7 @@ const TextBefore = styled.div`
 
 const AboutUs = () => {
 	return (
-		<Wrapper>
+		<Wrapper id='aboutUs'>
 			<Circle
 				width='644px'
 				height='644px'

@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Text from '../../../UI/Text/Text';
 import Br from '../../../UI/Br/Br';
@@ -49,14 +49,16 @@ const EndOfSelection = () => {
 
 	const [name, setName] = useState('');
 	const [errorName, setErrorName] = useState(false);
+	const [nameIsDirty, setNameIsDirty] = useState(false);
 	const [email, setEmail] = useState('');
 	const [errorEmail, setErrorEmail] = useState(false);
+	const [emailIsDirty, setEmailIsDirty] = useState(false);
 
 	const { changeFormSending } = sliceIndividualShoes.actions;
 	const dispatch = useAppDispatch();
 
 	const isValidName = (name: string) => {
-		return name.length >= 3 ? true : false;
+		return name.length >= 2 ? true : false;
 	};
 
 	const isValidEmail = (email: string) => {
@@ -65,15 +67,21 @@ const EndOfSelection = () => {
 
 	const sendingOffer = (event: SyntheticEvent) => {
 		event.preventDefault();
-		if (!isValidName(name)) setErrorName(true);
-		if (!isValidEmail(email)) setErrorEmail(true);
 		if (isValidName(name) && isValidEmail(email)) {
-			setErrorName(false);
-			setErrorEmail(false);
+			console.log(`Форма подборки имя -> ${name}, почта -> ${email}`);
 			dispatch(changeFormSending({ name, email }));
 			setSending(true);
 		}
 	};
+
+	useEffect(() => {
+		!isValidName(name) && nameIsDirty
+			? setErrorName(true)
+			: setErrorName(false);
+		!isValidEmail(email) && emailIsDirty
+			? setErrorEmail(true)
+			: setErrorEmail(false);
+	}, [email, name, emailIsDirty, nameIsDirty]);
 
 	return (
 		<Wrapper>
@@ -124,6 +132,7 @@ const EndOfSelection = () => {
 							background_color='#FFF'
 							border_radius='4px'
 							margin='0px 0px 10px 0px'
+							onClick={() => setNameIsDirty(true)}
 							onChange={(event: SyntheticEvent<HTMLInputElement>) =>
 								setName(event.currentTarget.value)
 							}
@@ -148,6 +157,7 @@ const EndOfSelection = () => {
 							background_color='#FFF'
 							border_radius='4px'
 							margin={errorEmail ? '0px 0px 10px 0px' : '0px 0px 20px 0px'}
+							onClick={() => setEmailIsDirty(true)}
 							onChange={(event: SyntheticEvent<HTMLInputElement>) =>
 								setEmail(event.currentTarget.value)
 							}
@@ -170,6 +180,7 @@ const EndOfSelection = () => {
 							ground_color='#F14F4F'
 							border_radius='4px'
 							onClick={sendingOffer}
+							disabled={sending}
 						>
 							<Text fontFamily='Intro-Regular' fontSize='16px'>
 								Получить

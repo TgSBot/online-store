@@ -90,7 +90,7 @@ const Post: FC<IPost> = ({ img, title, price, post }) => {
 							color='#444B58'
 							margin='10px 0px 0px 0px'
 						>
-							{`${BeautifulNumbers(price)} р`}
+							{`${BeautifulNumbers(Math.floor(price))} р`}
 						</Text>
 					</BlockText>
 				</Posts>

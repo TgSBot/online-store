@@ -15,7 +15,7 @@ type FormValue = {
 
 const Wrapper = styled.div`
 	width: 380px;
-	height: 414.97px;
+	height: fit-content;
 	display: flex;
 	background-color: #484283;
 	border-radius: 4px;
@@ -56,6 +56,9 @@ const Form: FC = () => {
 	const dispatch = useAppDispatch();
 
 	const HandleSubmitOn = (data: FormValue): any => {
+		console.log(
+			`Форма для связи с менеджером: имя -> ${data.firstName}, номер телефона -> ${data.phoneNumber}`
+		);
 		dispatch(
 			changeForm({ name: data.firstName, phoneNumber: data.phoneNumber })
 		);
@@ -108,7 +111,22 @@ const Form: FC = () => {
 						)}
 					/>
 					<BlockText
-						margin='9.94px 0px 10.05px 0px'
+						width='fit-content'
+						height='fit-content'
+						margin={errors?.firstName ? '10px 0px 10px 0px' : '0px'}
+					>
+						{errors?.firstName && (
+							<Text fontFamily='Intro-Regular' fontSize='18px' color='#F14F4F'>
+								{errors?.firstName?.message || 'Пожалуйста введите имя'}
+							</Text>
+						)}
+					</BlockText>
+					<BlockText
+						margin={
+							errors?.firstName
+								? '0px 0px 10.05px 0px'
+								: '9.94px 0px 10.05px 0px'
+						}
 						width='fit-content'
 						height='fit-content'
 					>
@@ -138,6 +156,17 @@ const Form: FC = () => {
 								/>
 							)}
 						/>
+					</BlockText>
+					<BlockText
+						width='fit-content'
+						height='fit-content'
+						margin={errors?.phoneNumber ? '0px 0px 10px 0px' : '0px'}
+					>
+						{errors?.phoneNumber && (
+							<Text fontFamily='Intro-Regular' fontSize='18px' color='#F14F4F'>
+								{errors?.phoneNumber?.message || 'Не правильный номер телефона'}
+							</Text>
+						)}
 					</BlockText>
 					<Button
 						type='submit'

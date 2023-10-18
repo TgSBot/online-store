@@ -59,61 +59,59 @@ const Photo = styled.div<PropsPhoto>`
 
 const ConnectUs = () => {
 	return (
-		<>
-			<Wrapper>
-				<Row>
-					<Form />
-					<Instagram>
-						<BlockText
-							width='100%'
-							height='100%'
-							justify_content='center'
-							margin='0px 0px 22px 0px'
-						>
+		<Wrapper id='connectUs'>
+			<Row>
+				<Form />
+				<Instagram>
+					<BlockText
+						width='100%'
+						height='100%'
+						justify_content='center'
+						margin='0px 0px 22px 0px'
+					>
+						<Img
+							src={instagram}
+							alt={'Instagram'}
+							width='157px'
+							height='55.64927px'
+						/>
+					</BlockText>
+					<BlockPhoto>
+						<Photo margin='0px 18px 0px 0px'>
 							<Img
-								src={instagram}
-								alt={'Instagram'}
+								src={flowers}
+								alt={'Цветы'}
 								width='157px'
-								height='55.64927px'
+								height='161px'
+								margin='0px 0px 15px 0px'
 							/>
-						</BlockText>
-						<BlockPhoto>
-							<Photo margin='0px 18px 0px 0px'>
-								<Img
-									src={flowers}
-									alt={'Цветы'}
-									width='157px'
-									height='161px'
-									margin='0px 0px 15px 0px'
-								/>
-								<Img
-									src={firework}
-									alt={'Фейерверки'}
-									width='157px'
-									height='161px'
-								/>
-							</Photo>
-							<Img src={dog} alt={'Собака'} width='330px' height='336.9px' />
-							<Photo margin='0px 0px 0px 18px'>
-								<Img
-									src={eat}
-									alt={'Мужчина готовит еду'}
-									width='157px'
-									height='161px'
-									margin='0px 0px 14.91px'
-								/>
-								<Img
-									src={busStop}
-									alt={'Остановка'}
-									width='157px'
-									height='161px'
-								/>
-							</Photo>
-						</BlockPhoto>
-					</Instagram>
-				</Row>
-			</Wrapper>
-		</>
+							<Img
+								src={firework}
+								alt={'Фейерверки'}
+								width='157px'
+								height='161px'
+							/>
+						</Photo>
+						<Img src={dog} alt={'Собака'} width='330px' height='336.9px' />
+						<Photo margin='0px 0px 0px 18px'>
+							<Img
+								src={eat}
+								alt={'Мужчина готовит еду'}
+								width='157px'
+								height='161px'
+								margin='0px 0px 14.91px'
+							/>
+							<Img
+								src={busStop}
+								alt={'Остановка'}
+								width='157px'
+								height='161px'
+							/>
+						</Photo>
+					</BlockPhoto>
+				</Instagram>
+			</Row>
+		</Wrapper>
 	);
 };
 

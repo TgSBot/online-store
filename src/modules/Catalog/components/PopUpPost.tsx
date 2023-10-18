@@ -1,16 +1,13 @@
 import React, { FC, SyntheticEvent } from 'react';
 import { Map, YMaps } from 'react-yandex-maps';
 import { styled } from 'styled-components';
-import { useAppDispatch } from '../../../hook/redux';
+import { useAppDispatch, useAppSelector } from '../../../hook/redux';
 import { slicePopUp } from '../../../store/reducers/PopUp';
 import BlockText from '../../../UI/BlockText/BlockText';
 import Body from './PopUp/Body';
 import PopUpImages from './PopUp/PopUpImages';
 import TitlePopUp from './PopUp/TitlePopUp';
 
-interface IPopUpPost {
-	display: boolean;
-}
 type PropsWrapper = {
 	display: string;
 };
@@ -33,13 +30,14 @@ const Row = styled.div`
 	overflow: auto;
 `;
 
-const PopUpPost: FC<IPopUpPost> = ({ display }) => {
+const PopUpPost: FC = () => {
+	const { active } = useAppSelector((state) => state.PopUp);
 	const { changeActivePopUp } = slicePopUp.actions;
 	const dispatch = useAppDispatch();
 
 	return (
 		<Wrapper
-			display={display ? 'flex' : 'none'}
+			display={active ? 'flex' : 'none'}
 			onClick={() => {
 				dispatch(changeActivePopUp(false));
 			}}

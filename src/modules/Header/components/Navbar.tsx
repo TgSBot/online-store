@@ -5,6 +5,7 @@ import Basket from '../../../assets/svg/Vector_basket.svg';
 import Circle from '../../../UI/Circle/Circle';
 import { sliceBasketPopUp } from '../../../store/reducers/BasketPopUp';
 import { useAppDispatch, useAppSelector } from '../../../hook/redux';
+import Button from '../../../UI/Button/Button';
 
 const Wrapper = styled.header`
 	width: fit-content;
@@ -37,6 +38,7 @@ const BasketRow = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: end;
+	cursor: pointer;
 `;
 
 const IMG = styled.img`
@@ -74,49 +76,62 @@ const Navbar: FC = () => {
 					SneakMax
 				</Text>
 				<NavigationStyle>
-					<Text
-						fontSize='14px'
-						fontFamily='Intro-Book'
-						margin='0px 40px 0px 0px'
-					>
-						Каталог
-					</Text>
-					<Text
-						fontSize='14px'
-						fontFamily='Intro-Book'
-						margin='0px 40px 0px 0px'
-					>
-						О нас
-					</Text>
-					<Text
-						fontSize='14px'
-						fontFamily='Intro-Book'
-						margin='0px 40px 0px 0px'
-					>
-						Подбор товара
-					</Text>
-					<Text
-						fontSize='14px'
-						fontFamily='Intro-Book'
-						margin='0px 40px 0px 0px'
-					>
-						Наша команда
-					</Text>
-					<Text
-						fontSize='14px'
-						fontFamily='Intro-Book'
-						margin='0px 40px 0px 0px'
-					>
-						Доставка и оплата
-					</Text>
-					<Text
-						fontSize='14px'
-						fontFamily='Intro-Book'
-						margin='0px 40px 0px 0px'
-					>
-						Контакты
-					</Text>
-					<BasketRow>
+					<a href='#catalog'>
+						<Text
+							fontSize='14px'
+							fontFamily='Intro-Book'
+							margin='0px 40px 0px 0px'
+						>
+							Каталог
+						</Text>
+					</a>
+					<a href='#aboutUs'>
+						<Text
+							fontSize='14px'
+							fontFamily='Intro-Book'
+							margin='0px 40px 0px 0px'
+						>
+							О нас
+						</Text>
+					</a>
+					<a href='#selectionOfShoes'>
+						<Text
+							fontSize='14px'
+							fontFamily='Intro-Book'
+							margin='0px 40px 0px 0px'
+						>
+							Подбор товара
+						</Text>
+					</a>
+					<a href='#team'>
+						<Text
+							fontSize='14px'
+							fontFamily='Intro-Book'
+							margin='0px 40px 0px 0px'
+						>
+							Наша команда
+						</Text>
+					</a>
+					<Button width='fit-content' height='fit-content' onClick={openPopUp}>
+						<Text
+							fontSize='14px'
+							fontFamily='Intro-Book'
+							margin='0px 40px 0px 0px'
+						>
+							Доставка и оплата
+						</Text>
+					</Button>
+
+					<a href='#contacts'>
+						<Text
+							fontSize='14px'
+							fontFamily='Intro-Book'
+							margin='0px 40px 0px 0px'
+						>
+							Контакты
+						</Text>
+					</a>
+					<BasketRow onClick={openPopUp}>
 						<Text
 							fontSize='14px'
 							fontFamily='Intro-Book'
@@ -124,7 +139,7 @@ const Navbar: FC = () => {
 						>
 							Корзина
 						</Text>
-						<BasketIMG onClick={openPopUp}>
+						<BasketIMG>
 							<IMG src={Basket} alt='Корзина' />
 							{countPurchases === 0 ? (
 								''

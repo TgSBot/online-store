@@ -45,7 +45,7 @@ const InteractivePanel: FC<IInteractivePanel> = ({ post }) => {
 	// Redux
 	const { postBasket } = useAppSelector((state) => state.BasketPopUp);
 	const { changePost, changeActivePopUp } = slicePopUp.actions;
-	const { changePostBasket } = sliceBasketPopUp.actions;
+	const { changePostBasket, changeStatusActive } = sliceBasketPopUp.actions;
 	const dispatch = useAppDispatch();
 
 	const ButtonClickPopUp = (event: SyntheticEvent<HTMLButtonElement>): void => {
@@ -71,9 +71,8 @@ const InteractivePanel: FC<IInteractivePanel> = ({ post }) => {
 	): void => {
 		event.preventDefault();
 		if (indexOf()) dispatch(changePostBasket(post));
+		if (indexOf() === false) dispatch(changeStatusActive(true));
 	};
-
-	console.log(postBasket);
 
 	return (
 		<InteractiveMenu

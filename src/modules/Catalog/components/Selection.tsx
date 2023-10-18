@@ -29,6 +29,7 @@ const Wrapper = styled.div<WrapperProps>`
 	border: 1px solid #fff4ee;
 	border-radius: 4px;
 	margin: ${(props) => props.margin || '0px'};
+	z-index: 2;
 `;
 
 const Row = styled.div`
@@ -44,9 +45,6 @@ const ButtonSizeSort = styled(Button)<propsButtonSizeShoes>`
 	font-family: Intro-Book;
 	font-size: 16px;
 	color: #444b58;
-	&:active {
-		outline: 2px solid;
-	}
 `;
 
 const Selection: FC<ISelection> = ({ margin }) => {
@@ -164,7 +162,7 @@ const Selection: FC<ISelection> = ({ margin }) => {
 					Размер
 				</Text>
 				<BlockText
-					width='240px'
+					width='241px'
 					height='171px'
 					justify_content='space-around'
 					flex_wrap='wrap'
@@ -182,7 +180,11 @@ const Selection: FC<ISelection> = ({ margin }) => {
 									? '1.143px 0px 0px 0px'
 									: '0px'
 							}
-							border='1px solid #DBBBA9'
+							border={
+								String(size) === String(sizeShoes)
+									? '2px solid #444B58'
+									: '1px solid #DBBBA9'
+							}
 							key={size}
 							onClick={onChangeSizeShoes}
 							value={size}
@@ -206,7 +208,7 @@ const Selection: FC<ISelection> = ({ margin }) => {
 				</Button>
 				<BlockText width='100%' height='fit-content' justify_content='center'>
 					<Button
-						width='72px'
+						width='100%'
 						height='16px'
 						ground_color='none'
 						onClick={defaultSortSettings}

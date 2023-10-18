@@ -23,7 +23,7 @@ const Row = styled.div`
 
 const Questions = () => {
 	return (
-		<Wrapper>
+		<Wrapper id='questions'>
 			<Row>
 				<BlockText width='fit-content' height='fit-content'>
 					<Text
