@@ -16,7 +16,7 @@ const ControlCheck = styled.div`
 	height: fit-content;
 	border: 1px solid #d9d9d9;
 	border-radius: 4px;
-	padding: 30px 30px 20px 30px;
+	padding: 30px 10px 20px 30px;
 	display: flex;
 	flex-direction: column;
 `;
@@ -69,6 +69,19 @@ const CheckMark = styled.div<PropsCheckMarks>`
 const BlockOrderPost = styled(BlockText)`
 	max-height: 233px;
 	overflow-y: auto;
+	padding: 0px 20px 0px 0px;
+	&::-webkit-scrollbar {
+		width: 9px;
+	}
+	&::-webkit-scrollbar-track {
+		background-color: rgba(169, 169, 169, 0.3);
+		border-radius: 5px;
+	}
+	&::-webkit-scrollbar-thumb {
+		width: 4px;
+		border-radius: 5px;
+		background-color: rgba(77, 77, 77, 0.2);
+	}
 `;
 
 const CheckOrderRegistration = () => {

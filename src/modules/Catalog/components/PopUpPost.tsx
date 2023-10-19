@@ -28,6 +28,18 @@ const Row = styled.div`
 	height: 1000px;
 	background-color: #fff;
 	overflow: auto;
+	&::-webkit-scrollbar {
+		width: 9px;
+	}
+	&::-webkit-scrollbar-track {
+		background-color: rgba(169, 169, 169, 0.4);
+		border-radius: 5px;
+	}
+	&::-webkit-scrollbar-thumb {
+		width: 4px;
+		border-radius: 5px;
+		background-color: rgba(77, 77, 77, 0.2);
+	}
 `;
 
 const PopUpPost: FC = () => {

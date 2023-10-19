@@ -45,6 +45,18 @@ const AllPurchases = styled.div`
 	overflow-y: auto;
 	overflow-x: hidden;
 	padding: 25px 20px;
+	&::-webkit-scrollbar {
+		width: 9px;
+	}
+	&::-webkit-scrollbar-track {
+		background-color: rgba(169, 169, 169, 0.3);
+		border-radius: 5px;
+	}
+	&::-webkit-scrollbar-thumb {
+		width: 4px;
+		border-radius: 5px;
+		background-color: rgba(77, 77, 77, 0.2);
+	}
 `;
 
 const BlockAllSum = styled.div`
